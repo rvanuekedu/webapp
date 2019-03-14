@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+			http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>Archetype Created Web Application</display-name>
+
+    <welcome-file-list>
+        <welcome-file>startPage.jsp</welcome-file>
+    </welcome-file-list>
+
+    <resource-ref>
+        <res-ref-name>jdbc/testing</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+    <filter>
+        <filter-name>LogInFilter</filter-name>
+        <filter-class>ua.nure.samoylenko.web.filter.LogInFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>LogInFilter</filter-name>
+        <url-pattern>/UnblockStudent</url-pattern>
+        <url-pattern>/BlockStudent</url-pattern>
+        <url-pattern>/AddTest</url-pattern>
+        <url-pattern>/EditTest</url-pattern>
+        <url-pattern>/DeleteTest</url-pattern>
+        <url-pattern>/DeleteQuestion</url-pattern>
+        <url-pattern>/DeleteAnswer</url-pattern>
+        <url-pattern>/AddQuestion</url-pattern>
+        <url-pattern>/AddAnswer</url-pattern>
+        <url-pattern>/EnterToTest</url-pattern>
+        <url-pattern>/ResultTest</url-pattern>
+        <url-pattern>/SearchTest</url-pattern>
+        <url-pattern>/SortTests</url-pattern>
+        <url-pattern>/ShowResult</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>StudentFilter</filter-name>
+        <filter-class>ua.nure.samoylenko.web.filter.StudentFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>StudentFilter</filter-name>
+        <url-pattern>/EnterToTest</url-pattern>
+        <url-pattern>/ResultTest</url-pattern>
+        <url-pattern>/SearchTest</url-pattern>
+        <url-pattern>/SortTests</url-pattern>
+        <url-pattern>/ShowResult</url-pattern>
+        <url-pattern>/ShowResults</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>ua.nure.samoylenko.web.filter.AdminFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/UnblockStudent</url-pattern>
+        <url-pattern>/BlockStudent</url-pattern>
+        <url-pattern>/AddTest</url-pattern>
+        <url-pattern>/EditTest</url-pattern>
+        <url-pattern>/DeleteTest</url-pattern>
+        <url-pattern>/DeleteQuestion</url-pattern>
+        <url-pattern>/DeleteAnswer</url-pattern>
+        <url-pattern>/AddQuestion</url-pattern>
+        <url-pattern>/AddAnswer</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+
+
+</web-app>
+
+

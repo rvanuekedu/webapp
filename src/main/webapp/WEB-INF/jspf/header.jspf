@@ -1,0 +1,31 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<header class="header-user-dropdown">
+
+            	<div class="header-limiter">
+            		<h1><a href="Enter"><span>Test</span>yourself</a></h1>
+
+            		<div class="header-user-menu">
+            		<c:choose>
+            		    <c:when test="${sessionScope.role == 'ADMIN'}">
+            			    <img src="../images/admin.jpg" alt="User Image"/>
+            		    </c:when>
+            		    <c:otherwise>
+            		        <img src="../images/student.png" alt="User Image"/>
+            		    </c:otherwise>
+            		</c:choose>
+
+            			<ul>
+            				<li><a href="Settings">Settings</a></li>
+            				<c:if test="${sessionScope.role == 'STUDENT'}">
+            				    <li><a href="ShowResults">Results</a></li>
+            				</c:if>
+            				<li><a href="Logout" class="highlight">Logout</a></li>
+            			</ul>
+            		</div>
+
+            	</div>
+
+</header>

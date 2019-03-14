@@ -1,0 +1,214 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+img {
+	width: 100%;
+}
+
+.filter {
+    position: relative;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+.list-name {
+    display: inline-block;
+    width: 20%;
+    font-size: 40px;
+    margin-left: 2%;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.adminPanel {
+    display: inline-block;
+    width: 55%;
+}
+
+.block-unblock select {
+    font-size: 17px;
+    margin-top: 5px;
+}
+
+.block-unblock button {
+  display: inline-block;
+  font-family: arial,sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  color: rgb(68,68,68);
+  text-decoration: none;
+  user-select: none;
+  padding: .2em 1.2em;
+  outline: none;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 2px;
+  background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+  transition: all .218s ease 0s;
+}
+
+.block-unblock button:hover {
+  color: rgb(24,24,24);
+  border: 1px solid rgb(198,198,198);
+  background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
+.block-unblock button:active {
+  color: rgb(51,51,51);
+  border: 1px solid rgb(204,204,204);
+  background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
+  box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+}
+
+.addTest {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.addTest a {
+  display: inline-block;
+  font-family: arial,sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  color: rgb(68,68,68);
+  text-decoration: none;
+  user-select: none;
+  padding: .2em 1.2em;
+  outline: none;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 2px;
+  background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+  transition: all .218s ease 0s;
+}
+
+.addTest a:hover {
+  color: rgb(24,24,24);
+  border: 1px solid rgb(198,198,198);
+  background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
+.addTest a:active {
+  color: rgb(51,51,51);
+  border: 1px solid rgb(204,204,204);
+  background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
+  box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+}
+
+.label {
+    font-size: 20px;
+}
+
+.searchTest {
+    display: inline-block;
+    position: absolute;
+    top: 2%;
+}
+
+.filter .dropLink {
+    position: absolute;
+    left: 85%;
+    top: 60%;
+}
+
+.test-cards {
+    background-color: #fdd;
+    background-color: white;
+    display: block;
+    padding-left: 2%;
+}
+
+.card {
+    display: inline-block;
+    margin-right: 2.5%;
+    margin-bottom: 5%;
+    height: 370px;
+    width: 22%;
+    background-color: #ffd;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.1);
+
+}
+
+.card div {
+    margin-bottom: 8%;
+}
+
+.test-name {
+    font-size: 25px;
+    text-align: center;
+}
+
+.asd {
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.btn-pass {
+    width: 90%;
+    height: 10%;
+    margin-left: 5%;
+    background-color: #ffa;
+    margin-top: 6%;
+    font-size: 25px;
+    text-align: center;
+}
+
+.btn-pass a {
+    text-decoration: none;
+    border-bottom: none;
+    color:black;
+}
+
+.btn-pass:hover  {
+    background: white;
+}
+
+.blockStudent {
+    margin-top: 15px;
+}
+
+.block-student {
+    display: inline-block;
+}
+
+.unblock-student {
+    display: inline-block;
+}
+
+.tests-not-found {
+    margin-left: 40%;
+    margin-top: 8%;
+}
+
+.tests-not-found p {
+    font-size: 40px;
+}
+
+img {
+    width: 25px;
+}
+
+.card .delete-edit {
+    margin-bottom: 3%;
+}
+
+.delete {
+    margin-left: 72%;
+    display: inline-block;
+}
+
+.edit {
+    margin-left: 5%;
+    display: inline-block;
+}
+
+hr {
+    margin-bottom:70px;
+}

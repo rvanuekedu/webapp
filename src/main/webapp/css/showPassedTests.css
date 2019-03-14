@@ -1,0 +1,56 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+.test-cards {
+    margin-top: 100px;
+    background-color: #fdd;
+    background-color: white;
+    display: block;
+    padding-left: 2%;
+}
+
+.card {
+    display: inline-block;
+    margin-right: 2.5%;
+    margin-bottom: 5%;
+    height: 200px;
+    width: 22%;
+    background-color: #ffd;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.1);
+
+}
+
+.card div {
+    margin-bottom: 10%;
+}
+
+.test-name {
+    margin-top: 20px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.asd {
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.tests-not-found {
+    margin-left: 40%;
+    margin-top: 8%;
+}
+
+.tests-not-found p {
+    font-size: 40px;
+}
+
+.result {
+    font-size: 30px;
+    color: #2A6A92;
+}

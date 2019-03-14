@@ -1,0 +1,82 @@
+.filter-btn:hover {
+    background-color:#dfd;
+}
+
+.filter-btn:active {
+    position:relative;
+    top:1px;
+}
+
+#dropdown {
+    position: relative;
+    background-color: white;
+    width: 100pm;
+    width: auto;
+    right: 20%;
+ }
+
+.filter-btn {
+    display: inline-block;
+    font-family: arial,sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    color: rgb(68,68,68);
+    text-decoration: none;
+    user-select: none;
+    padding: .2em 1.2em;
+    outline: none;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 2px;
+    background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+    transition: all .218s ease 0s;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+  color: rgb(24,24,24);
+  border: 1px solid rgb(198,198,198);
+  background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
+.filter-btn:active {
+  color: rgb(51,51,51);
+  border: 1px solid rgb(204,204,204);
+  background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
+  box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+}
+
+.dropLink ul {
+    width: 100%; /* Ширина меню */
+    list-style: none; /* Для списка убираем маркеры */
+    margin: 0; /* Нет отступов вокруг */
+    padding: 0; /* Убираем поля вокруг текста */
+}
+
+.dropLink li ul {
+    position: absolute; /* Подменю позиционируются абсолютно */
+    display: none; /* Скрываем подменю */
+    margin-left: -90%; /* Сдвигаем подменю вправо */
+    margin-top: -25%; /* Сдвигаем подменю вверх */
+}
+
+.dropLink li a {
+    display: block; /* Ссылка как блочный элемент */
+    padding: 5px; /* Поля вокруг надписи */
+    text-decoration: none; /* Подчеркивание у ссылок убираем */
+    color: #666; /* Цвет текста */
+    border: 1px solid #ccc;/* Рамка вокруг пунктов меню */
+    background-color: white; /* Цвет фона */
+    border-bottom: none; /* Границу снизу не проводим */
+}
+
+.dropLink li a:hover {
+    color: rgb(51,51,51); /* Цвет текста активного пункта */
+    background-color: rgb(245,245,245); /* Цвет фона активного пункта */
+    pointer: cursor;
+}
+
+.dropLink li:hover ul {
+    display: block; /* При выделении пункта курсором мыши отображается подменю */
+    pointer: cursor;
+}

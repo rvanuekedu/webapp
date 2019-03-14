@@ -1,0 +1,35 @@
+.searchTest form {
+    display: inline-block;
+    position: relative;
+    width: 300px;
+}
+
+.searchTest input {
+    width: 100%;
+    height: 42px;
+    padding-left: 10px;
+    border: 2px solid #292c2f;
+    border-radius: 5px;
+    outline: none;
+    background: white;
+    color: black;
+}
+
+.searchTest button {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: #292c2f;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.searchTest button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #F9F0DA;
+}

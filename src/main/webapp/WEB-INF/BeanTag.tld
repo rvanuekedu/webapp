@@ -1,0 +1,10 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>TestsList</short-name>
+    <tag>
+        <name>showTestsList</name>
+        <tag-class>ua.nure.samoylenko.web.tag.BeanTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+</taglib>
