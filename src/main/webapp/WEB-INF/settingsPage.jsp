@@ -21,6 +21,13 @@
     <div id="email" style="display: none;">${sessionScope.user.email}</div>
 
 
+    <div class="studentInfo">
+        <h1>Student first name:</h1><h2>${student.firstName}</h2>
+        <br>
+        <h1>Student second name:</h1><h2>${student.secondName}</h2>
+        <br>
+        <h1>Student email:</h1><h2>${student.userEmail}</h2>
+    </div>
 
     <div class="fixed">
 

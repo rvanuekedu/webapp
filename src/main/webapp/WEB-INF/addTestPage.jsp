@@ -8,6 +8,7 @@
     <head>
         <link href="../css/addTestStyle.css" rel="stylesheet">
     </head>
+    <title>Add Test</title>
 
     <body>
         <div class="back">

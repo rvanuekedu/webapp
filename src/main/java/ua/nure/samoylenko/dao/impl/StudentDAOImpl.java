@@ -3,7 +3,6 @@ package ua.nure.samoylenko.dao.impl;
 import ua.nure.samoylenko.dao.StudentDAO;
 import ua.nure.samoylenko.db.ConnectionProvider;
 import ua.nure.samoylenko.dto.RegisterDTO;
-import ua.nure.samoylenko.dto.StudentDTO;
 import ua.nure.samoylenko.entities.Student;
 import ua.nure.samoylenko.exception.DBException;
 import ua.nure.samoylenko.utils.SQLConstants;
@@ -18,9 +17,9 @@ import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
 
-	@Override
-	public Student getStudentById(int id) {
-		ConnectionProvider provider = ConnectionProvider.getInstance();
+    @Override
+    public Student getStudentById(int id) {
+        ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
         ResultSet resultSet;
         Student student = null;
@@ -31,19 +30,17 @@ public class StudentDAOImpl implements StudentDAO {
             if (resultSet.next()) {
                 student = executeStudent(resultSet);
             }
-            resultSet.close();
-            statement.close();
             return student;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain student by id", e);
         }
-	}
+    }
 
-	@Override
-	public List<Student> getAllStudents() {
-		List<Student> students = new ArrayList<>();
+    @Override
+    public List<Student> getAllStudents() {
+        List<Student> students = new ArrayList<>();
         ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
         ResultSet resultSet;
@@ -64,49 +61,47 @@ public class StudentDAOImpl implements StudentDAO {
                 currentStudent.setIsBanned(isBanned);
                 students.add(currentStudent);
             }
-            resultSet.close();
-            statement.close();
             return students;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all students", e);
         }
-	}
+    }
 
-	@Override
-	public void blockStudent(int id) {
-		ConnectionProvider provider = ConnectionProvider.getInstance();
+    @Override
+    public void blockStudent(int id) {
+        ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
         try (Connection connection = provider.getConnection()) {
             statement = connection.prepareStatement(SQLConstants.UPDATE_STUDENTS_SET_BANNED_TRUE);
             statement.setInt(1, id);
             statement.execute();
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t block student", e);
         }
-	}
+    }
 
-	@Override
-	public void unblockStudent(int id) {
-		ConnectionProvider provider = ConnectionProvider.getInstance();
+    @Override
+    public void unblockStudent(int id) {
+        ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
         try (Connection connection = provider.getConnection()) {
             statement = connection.prepareStatement(SQLConstants.UPDATE_STUDENTS_SET_BANNED_FALSE);
             statement.setInt(1, id);
             statement.execute();
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t unblock student", e);
         }
-	}
+    }
 
-	@Override
-	public void createStudent(RegisterDTO registerDTO) {
-		ConnectionProvider provider = ConnectionProvider.getInstance();
+    @Override
+    public void createStudent(RegisterDTO registerDTO) {
+        ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
         try (Connection connection = provider.getConnection()) {
             statement = connection.prepareStatement(SQLConstants.INSERT_NEW_STUDENT);
@@ -115,36 +110,34 @@ public class StudentDAOImpl implements StudentDAO {
             statement.setString(index++, registerDTO.getSecondName());
             statement.setString(index, registerDTO.getEmail());
             statement.execute();
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t create student", e);
         }
-	}
+    }
 
-	@Override
-	public Student getStudent(RegisterDTO registerDTO) {
-		ConnectionProvider provider = ConnectionProvider.getInstance();
+    @Override
+    public Student getStudent(String email) {
+        ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
         ResultSet resultSet;
         Student student = null;
         try (Connection connection = provider.getConnection()) {
             statement = connection.prepareStatement(SQLConstants.SELECT_STUDENT);
-            statement.setString(1, registerDTO.getEmail());
+            statement.setString(1, email);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 student = executeStudent(resultSet);
             }
-            resultSet.close();
-            statement.close();
             return student;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain student", e);
         }
 
-	}
+    }
 
     @Override
     public Integer getStudentIdByEmail(String email) {
@@ -159,8 +152,6 @@ public class StudentDAOImpl implements StudentDAO {
             if (resultSet.next()) {
                 studentId = resultSet.getInt("id");
             }
-            resultSet.close();
-            preparedStatement.close();
             return studentId;
         } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
@@ -192,10 +183,8 @@ public class StudentDAOImpl implements StudentDAO {
                 currentStudent.setIsBanned(isBanned);
                 students.add(currentStudent);
             }
-            resultSet.close();
-            statement.close();
             return students;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all students", e);
@@ -225,10 +214,8 @@ public class StudentDAOImpl implements StudentDAO {
                 currentStudent.setIsBanned(isBanned);
                 students.add(currentStudent);
             }
-            resultSet.close();
-            statement.close();
             return students;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all students", e);
@@ -257,20 +244,20 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     private Student executeStudent(ResultSet resultSet) throws SQLException {
-		 Student student = new Student();
-	        int id = resultSet.getInt("id");
-	        String firstName = resultSet.getString("first_name");
-	        String secondName = resultSet.getString("second_name");
-	        String userEmail = resultSet.getString("user_email");
-	        boolean isBanned = resultSet.getBoolean("is_banned");
+        Student student = new Student();
+        int id = resultSet.getInt("id");
+        String firstName = resultSet.getString("first_name");
+        String secondName = resultSet.getString("second_name");
+        String userEmail = resultSet.getString("user_email");
+        boolean isBanned = resultSet.getBoolean("is_banned");
 
-	        student.setId(id);
-	        student.setFirstName(firstName);
-	        student.setSecondName(secondName);
-	        student.setUserEmail(userEmail);
-	        student.setIsBanned(isBanned);
+        student.setId(id);
+        student.setFirstName(firstName);
+        student.setSecondName(secondName);
+        student.setUserEmail(userEmail);
+        student.setIsBanned(isBanned);
 
-	        return student;
-	}
+        return student;
+    }
 
 }

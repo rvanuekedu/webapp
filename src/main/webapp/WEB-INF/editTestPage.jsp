@@ -9,6 +9,7 @@
         <link href="../css/editTestStyle.css" rel="stylesheet">
     </head>
 
+    <title>Edit Test</title>
     <body>
         <div class="back">
             <a class="back" href="Enter" title="Back" ><img src="../images/back.png" alt=""></a>

@@ -10,6 +10,7 @@
         <script src='../js/pencil.js'></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
+    <title>Test</title>
 
     <body>
         <c:choose>

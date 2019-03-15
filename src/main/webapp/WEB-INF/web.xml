@@ -58,8 +58,6 @@
     <filter-mapping>
         <filter-name>StudentFilter</filter-name>
         <url-pattern>/ResultTest</url-pattern>
-        <url-pattern>/SearchTest</url-pattern>
-        <url-pattern>/SortTests</url-pattern>
         <url-pattern>/ShowResult</url-pattern>
         <url-pattern>/ShowResults</url-pattern>
         <url-pattern>/Settings</url-pattern>

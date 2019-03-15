@@ -49,7 +49,7 @@ public class SQLConstants {
 
     public static final String INSERT_NEW_STUDENT = "INSERT INTO students VALUES(default, ?, ?, ?, default)";
 
-    public static final String SELECT_STUDENT = "SELECT * FROM students WHERE user_email = '?'";
+    public static final String SELECT_STUDENT = "SELECT * FROM students WHERE user_email = ?";
 
     public static final String SELECT_STUDENT_ID_BY_EMAIL = "SELECT id FROM students WHERE user_email = ?";
 

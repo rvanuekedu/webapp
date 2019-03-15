@@ -40,8 +40,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student getStudent(RegisterDTO registerDTO) {
-        return studentDAO.getStudent(registerDTO);
+    public Student getStudent(String email) {
+        return studentDAO.getStudent(email);
     }
 
     @Override

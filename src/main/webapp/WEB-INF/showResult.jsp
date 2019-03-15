@@ -7,6 +7,7 @@
     <head>
         <link href="../css/showResult.css" rel="stylesheet">
     </head>
+    <title>Result</title>
     <body>
 
                 <p>

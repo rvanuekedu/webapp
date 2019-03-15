@@ -7,21 +7,24 @@
   margin: 0px;
 }
 
+body {
+    background: #f7f7f7;
+}
+
 .fixed {
-    width: 100%;
-    height: 100%;
-    position: fixed;
+    display: block;
+    margin-bottom: 100px;
 }
 
 .container-change-email {
     display: inline-block;
     margin-top: 2%;
 	background: white;
-	height: 100%;
 	width: 40%;
 	position: relative;
 	left:5%;
 	color: black;
+	background: #f7f7f7;
 }
 
 input {
@@ -71,12 +74,12 @@ input {
 .container-change-password {
     margin-top: 2%;
 	background: white;
-	height: 100%;
 	width: 40%;
 	position: relative;
 	display: inline-block;
 	left:15%;
 	color: black;
+	background: #f7f7f7;
 }
 
 hr {
@@ -97,5 +100,23 @@ h1 {
     font-size: 40px;
     text-align: center;
     margin-bottom: 60px;
+}
+
+.studentInfo {
+    display: block;
+    margin-bottom: 70px;
+}
+
+.studentInfo h1 {
+    margin-left: 90px;
+    display: inline-block;
+    font-size: 40px;
+}
+
+.studentInfo h2 {
+    color: #2A6A92;
+    margin-left: 40px;
+    display: inline-block;
+    font-size: 30px;
 }
 

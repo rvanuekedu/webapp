@@ -7,6 +7,10 @@
   margin: 0px;
 }
 
+body {
+    background: #f7f7f7;
+}
+
 img {
 	width: 100%;
 }
@@ -119,8 +123,7 @@ img {
 }
 
 .test-cards {
-    background-color: #fdd;
-    background-color: white;
+    background: #f7f7f7;
     display: block;
     padding-left: 2%;
 }
@@ -185,6 +188,7 @@ img {
 .tests-not-found {
     margin-left: 40%;
     margin-top: 8%;
+    background: #f7f7f7;
 }
 
 .tests-not-found p {

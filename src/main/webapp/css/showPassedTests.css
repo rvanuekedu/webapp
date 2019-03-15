@@ -7,10 +7,13 @@
   margin: 0px;
 }
 
+body {
+    background: #f7f7f7;
+}
+
 .test-cards {
     margin-top: 100px;
-    background-color: #fdd;
-    background-color: white;
+    background: #f7f7f7;
     display: block;
     padding-left: 2%;
 }

@@ -77,7 +77,7 @@
             </div>
 
             <div class="dropLink">
-                <a class="filter-btn" onclick="down()">FILTER</a>
+                <a class="filter-btn" onclick="down()">Filter</a>
                     <ul id="dropdown" class="menu" style="display:none">
                         <li><a>Sort by test name</a>
                             <ul>

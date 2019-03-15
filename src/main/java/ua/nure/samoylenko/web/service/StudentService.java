@@ -17,7 +17,7 @@ public interface StudentService {
 
     void createStudent(RegisterDTO registerDTO);
 
-    Student getStudent(RegisterDTO registerDTO);
+    Student getStudent(String email);
 
     Integer getStudentIdByEmail(String email);
 

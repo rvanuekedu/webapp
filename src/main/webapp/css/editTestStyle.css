@@ -8,6 +8,7 @@
   }
 
 body {
+    background: #f7f7f7;
 }
 
 h1 {
@@ -33,6 +34,7 @@ select {
 	position: relative;
 	left:30%;
 	color: black;
+	background: #f7f7f7;
 }
 
 input {
