@@ -103,4 +103,8 @@ public class SQLConstants {
 
     public static final String SELECT_USERS_WHERE_EMAIL_PASSWORD = "SELECT * FROM users WHERE email=? AND password=SHA1(?)";
 
+    public static final String UPDATE_USER_EMAIL = "UPDATE users SET email=? WHERE email=?";
+
+    public static final String UPDATE_USER_PASSWORD = "UPDATE users SET password WHERE email=?";
+
 }

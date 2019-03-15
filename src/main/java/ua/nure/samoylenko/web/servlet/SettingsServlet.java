@@ -23,10 +23,11 @@ public class SettingsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         super.doPost(httpServletRequest, httpServletResponse);
+        httpServletResponse.sendRedirect("Settings");
     }
 
     @Override
-    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
-        httpServletResponse.sendRedirect("WEB-INF/settingsPage.jsp");
+    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
+        httpServletRequest.getRequestDispatcher("WEB-INF/settingsPage.jsp").forward(httpServletRequest, httpServletResponse);
     }
 }

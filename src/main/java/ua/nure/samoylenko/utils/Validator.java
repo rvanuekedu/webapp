@@ -36,4 +36,27 @@ public class Validator {
         }
         return emailFlag && passwordFlag;
     }
+
+    public boolean validateEmail(String email) {
+        boolean emailFlag = false;
+
+        Pattern pattern = Pattern.compile(RegExpConstants.EMAIL_VALIDATE);
+        Matcher matcher = pattern.matcher(email);
+
+        if (matcher.find()) {
+            emailFlag = true;
+        }
+        return emailFlag;
+    }
+
+    public boolean validatePassword(String password) {
+        boolean passwordFlag = false;
+        Pattern pattern = Pattern.compile(RegExpConstants.PASSWORD_VALIDATE);
+        Matcher matcher = pattern.matcher(password);
+
+        if (matcher.find()) {
+            passwordFlag = true;
+        }
+        return passwordFlag;
+    }
 }

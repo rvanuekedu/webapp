@@ -49,7 +49,6 @@
 
     <filter-mapping>
         <filter-name>StudentFilter</filter-name>
-        <url-pattern>/EnterToTest</url-pattern>
         <url-pattern>/ResultTest</url-pattern>
         <url-pattern>/SearchTest</url-pattern>
         <url-pattern>/SortTests</url-pattern>
