@@ -12,7 +12,7 @@ CREATE TABLE users (
 );
 
 INSERT INTO users VALUE ('root', SHA1('root'), 'ADMIN');
-INSERT INTO users VALUE ('rvanuekedu@gmail.com', SHA1('itispassword'), DEFAULT);
+INSERT INTO users VALUE ('rvanuekedu@gmail.com', SHA1('1Q!qwerty'), DEFAULT);
 
 
 CREATE TABLE students (

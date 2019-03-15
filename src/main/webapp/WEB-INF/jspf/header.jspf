@@ -18,11 +18,16 @@
             		</c:choose>
 
             			<ul>
-            				<c:if test="${sessionScope.role == 'STUDENT'}">
+            			<c:choose>
+            			    <c:when test="${sessionScope.role == 'STUDENT'}">
             				    <li><a href="Settings">Settings</a></li>
             				    <li><a href="ShowResults">Results</a></li>
-            				</c:if>
-            				<li><a href="Logout" class="highlight">Logout</a></li>
+            				    <li><a href="Logout" class="highlight">Logout</a></li>
+            				</c:when>
+            				<c:otherwise>
+            				    <li><a href="Logout" class="highlight">Logout</a></li>
+            			    </c:otherwise>
+            			</c:choose>
             			</ul>
             		</div>
 

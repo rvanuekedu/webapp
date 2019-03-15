@@ -7,7 +7,7 @@ import ua.nure.samoylenko.entities.User;
 
 public interface UserService {
 
-	User getUser(RegisterDTO registerDTO);
+	User getUser(String email);
 
 	void createUser(RegisterDTO registerDTO);
 
@@ -17,6 +17,6 @@ public interface UserService {
 
 	void changeUserEmail (ChangeEmailDTO changeEmailDTO);
 
-	void chanheUserPassword (ChangePasswordDTO changePasswordDTO);
+	void changeUserPassword (ChangePasswordDTO changePasswordDTO);
 	
 }

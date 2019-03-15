@@ -6,25 +6,36 @@
     <head>
         <link href="../css/header.css" rel="stylesheet">
         <link href="../css/settingsPageStyle.css" rel="stylesheet">
+        <script src="../js/validatePassword.js"></script>
+        <script src="../js/validateEmail.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.6.0/sha1.js"></script>
     </head>
     <title>Settings</title>
 
-    <body>
-    <div class="fixed">
         <%@ include file="jspf/header.jspf" %>
+        <br><br><br>
+    <body>
+
+    <div id="userPassword" style="display: none;">${sessionScope.user.password}</div>
+    <div id="email" style="display: none;">${sessionScope.user.email}</div>
+
+
+
+    <div class="fixed">
 
         <div class="container-change-email">
             <form action="ChangeEmail" name="changeEmail" method="POST">
                 <div class="inputCenter">
                     <h1 class="title-center">Change email</h1>
                     <h1>Current Email</h1>
-                    <input type="email" name="currentEmail" id="email" required>
+                    <input type="email" name="currentEmail" id="currentEmail" required>
                     <h1>New Email</h1>
-                    <input type="email" name="newEmail" id="email" required>
+                    <input type="email" name="newEmail" id="newEmail" required>
                     <h1>Password</h1>
-                    <input type="password" name="password" id="password1" required>
+                    <input type="password" name="password" id="password" required>
                     <br>
-                    <input class="btn" type="submit" name="submit" value="Change" onclick="return validateForm()">
+                    <input class="btn"  type="submit" name="submit" value="Change" onclick="return validateEmail()">
                 </div>
             </form>
         </div>
@@ -42,7 +53,7 @@
                     <h1>Verify password</h1>
                     <input type="password" name="password2" id="password2" pattern="(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}" title="Must contain at least one number, one upcase letter, one special symbol(!@#$%^&*) and at least 6 or more characters" required>
                     <br>
-                    <input class="btn" type="submit" name="submit" value="Change" onclick="return validateForm()">
+                    <input class="btn" type="submit" name="submit" value="Change" onclick="return validatePassword()">
                 </div>
             </form>
         </div>

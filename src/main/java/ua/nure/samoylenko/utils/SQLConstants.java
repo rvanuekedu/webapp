@@ -105,6 +105,6 @@ public class SQLConstants {
 
     public static final String UPDATE_USER_EMAIL = "UPDATE users SET email=? WHERE email=?";
 
-    public static final String UPDATE_USER_PASSWORD = "UPDATE users SET password WHERE email=?";
+    public static final String UPDATE_USER_PASSWORD = "UPDATE users SET password=SHA1(?) WHERE email=?";
 
 }

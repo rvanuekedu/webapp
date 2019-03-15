@@ -38,6 +38,10 @@
         <url-pattern>/SearchTest</url-pattern>
         <url-pattern>/SortTests</url-pattern>
         <url-pattern>/ShowResult</url-pattern>
+        <url-pattern>/ShowResults</url-pattern>
+        <url-pattern>/Settings</url-pattern>
+        <url-pattern>/ChangeEmail</url-pattern>
+        <url-pattern>/ChangePassword</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
@@ -54,6 +58,9 @@
         <url-pattern>/SortTests</url-pattern>
         <url-pattern>/ShowResult</url-pattern>
         <url-pattern>/ShowResults</url-pattern>
+        <url-pattern>/Settings</url-pattern>
+        <url-pattern>/ChangeEmail</url-pattern>
+        <url-pattern>/ChangePassword</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>

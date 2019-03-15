@@ -15,8 +15,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(RegisterDTO registerDTO) {
-        return userDAO.getUser(registerDTO);
+    public User getUser(String email) {
+        return userDAO.getUser(email);
     }
 
     @Override
@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void chanheUserPassword(ChangePasswordDTO changePasswordDTO) {
-        userDAO.chanheUserPassword(changePasswordDTO);
+    public void changeUserPassword(ChangePasswordDTO changePasswordDTO) {
+        userDAO.changeUserPassword(changePasswordDTO);
     }
 
 }

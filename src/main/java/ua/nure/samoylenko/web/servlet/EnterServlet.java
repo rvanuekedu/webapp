@@ -47,7 +47,7 @@ public class EnterServlet extends HttpServlet {
             throw new AppException("Wrong login or password. Please, try again");
         }
 
-        user = userService.getUser(registerDTO);
+        user = userService.getUser(registerDTO.getEmail());
         List<Integer> passedTest = new ArrayList<>();
 
         httpServletRequest.getSession().setAttribute("user", user);

@@ -1,5 +1,6 @@
 package ua.nure.samoylenko.web.servlet;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import ua.nure.samoylenko.dto.ChangeEmailDTO;
 import ua.nure.samoylenko.entities.User;
 import ua.nure.samoylenko.exception.AppException;
@@ -35,10 +36,12 @@ public class ChangeEmailServlet extends HttpServlet {
         String password = httpServletRequest.getParameter("password");
         SenderSSl senderSSl = new SenderSSl("mailForTestingEpam@gmail.com", "Qwerty12!");
 
+        String sha1Password = DigestUtils.shaHex(password);
+
         String subject = "TestYourself service";
         String message = "You are change email." + " To enter the service, use the following parameters:\n" +
                 "login: " + newEmail + "\n" +
-                "password: " + user.getPassword();
+                "password: " + password;
 
 
         if (!user.getEmail().equals(currentEmail)) {
@@ -53,14 +56,13 @@ public class ChangeEmailServlet extends HttpServlet {
             throw new AppException("User with this email already exists");
         }
 
-        if (!user.getPassword().equals(password)) {
+        if (!user.getPassword().equals(sha1Password)) {
             throw new AppException("Wrong password");
         }
 
         changeEmailDTO.setCurrentEmail(currentEmail);
         changeEmailDTO.setNewEmai(newEmail);
         userService.changeUserEmail(changeEmailDTO);
-
         user.setEmail(newEmail);
         httpServletRequest.getSession().setAttribute("user", user);
 

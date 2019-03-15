@@ -18,14 +18,14 @@ import java.sql.SQLException;
 public class UserDAOImpl implements UserDAO {
 
     @Override
-    public User getUser(RegisterDTO registerDTO) {
+    public User getUser(String email) {
         ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
         ResultSet resultSet;
         User user = null;
         try (Connection connection = provider.getConnection()) {
             statement = connection.prepareStatement(SQLConstants.SELECT_USERS_WHERE_EMAIL);
-            statement.setString(1, registerDTO.getEmail());
+            statement.setString(1, email);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 user = executeUser(resultSet);
@@ -121,7 +121,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void chanheUserPassword(ChangePasswordDTO changePasswordDTO) {
+    public void changeUserPassword(ChangePasswordDTO changePasswordDTO) {
         ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
         try (Connection connection = provider.getConnection()) {
