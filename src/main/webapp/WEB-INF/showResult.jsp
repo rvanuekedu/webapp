@@ -10,9 +10,19 @@
     <title>Result</title>
     <body>
 
+        <c:choose>
+            <c:when test="${empty sessionScope.language}">
+                <fmt:setLocale value="en"/>
+            </c:when>
+            <c:otherwise>
+                <fmt:setLocale value="${sessionScope.language}"/>
+            </c:otherwise>
+        </c:choose>
+        <fmt:setBundle var="BundleContent" basename="Content"/>
+
                 <p>
                     <a href="Enter" title="Back to main page"><img src="../images/success.png" alt=""></a>
-                    <h1>Your result is:</h1>
+                    <h1><fmt:message key="your result" bundle="${BundleContent}"/></h1>
                     <h1>${result}</h1>
                 </p>
 

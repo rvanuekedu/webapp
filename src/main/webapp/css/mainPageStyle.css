@@ -223,3 +223,9 @@ hr {
     display: inline-block;
     margin-right: 30px;
 }
+
+.asd strong{
+    margin-right: 20px;
+    float: right;
+    font-size: 23px;
+}

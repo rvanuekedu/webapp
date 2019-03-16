@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="/WEB-INF/BeanTag.tld" prefix="tag" %>
 
 <html>
     <head>
@@ -13,13 +14,20 @@
     <title>Test</title>
 
     <body>
+    <c:choose>
+            <c:when test="${empty sessionScope.language}">
+                <fmt:setLocale value="en"/>
+            </c:when>
+            <c:otherwise>
+                <fmt:setLocale value="${sessionScope.language}"/>
+            </c:otherwise>
+        </c:choose>
+        <fmt:setBundle var="BundleContent" basename="Content"/>
+
         <c:choose>
             <c:when test="${sessionScope.role == 'STUDENT'}">
             <script src='../js/timer.js'></script>
-                <div class="timer" id="timer">
-                        <div id="minute">${testTime}</div>&nbsp;:
-                        <div id="second">00</div>
-                </div>
+                <tag:showTimer/>
 
                 <div class="container">
                     <form action="/ResultTest?testId=${testId}" id="testPass" name="TestPage" method="POST">
@@ -41,7 +49,7 @@
                             </div>
                             <c:set var="number" value="${number + 1}" scope="page"/>
                         </c:forEach>
-                        <button class="btn" type="submit" >PASS</button>
+                        <button class="btn" type="submit" ><fmt:message key="PASS" bundle="${BundleContent}"/></button>
                     </form>
                 </div>
             </c:when>
@@ -56,7 +64,7 @@
                     <div class="addQuestion">
                         <form action="AddQuestion?testId=${testId}" name="AddQuestion" method="POST">
                             <input type="text" name="newQuestion">
-                            <button class="addQuestionBtn" type="submit">Add question</button>
+                            <button class="addQuestionBtn" type="submit"><fmt:message key="add question" bundle="${BundleContent}"/></button>
                         </form>
                     </div>
                             <c:set var="number" value="1" scope="page"/>
@@ -72,10 +80,10 @@
                                     <form id="addAnswerForm" action="AddAnswer?questionId=${questionId}&testId=${testId}" name="AddAnswer" method="POST">
                                         <input type="text" name="newAnswer">
                                             <select name="isCorrect">
-                                                <option value="true">true</option>
-                                                <option value="false" selected>false</option>
+                                                <option value="true"><fmt:message key="true" bundle="${BundleContent}"/></option>
+                                                <option value="false" selected><fmt:message key="false" bundle="${BundleContent}"/></option>
                                             </select>
-                                        <button type="submit" from="addAnswerForm">Add answer</button>
+                                        <button type="submit" from="addAnswerForm"><fmt:message key="add answer" bundle="${BundleContent}"/></button>
                                     </form>
                                 </div>
                             <div class="answers">

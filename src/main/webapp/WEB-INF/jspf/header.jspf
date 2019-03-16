@@ -2,10 +2,28 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<c:choose>
+            <c:when test="${empty sessionScope.language}">
+                <fmt:setLocale value="en"/>
+            </c:when>
+            <c:otherwise>
+                <fmt:setLocale value="${sessionScope.language}"/>
+            </c:otherwise>
+        </c:choose>
+        <fmt:setBundle var="BundleContent" basename="Content"/>
+
 <header class="header-user-dropdown">
 
             	<div class="header-limiter">
             		<h1><a href="Enter"><span>Test</span>yourself</a></h1>
+
+                    <div class="header-user-menu" style="float: left; margin-left: 70.5%;">
+            			    <img src="../images/language.jpg" alt=""/>
+            			<ul>
+            				    <li><a href="ChangeLanguage?language=ru"><fmt:message key="russian" bundle="${BundleContent}"/></a></li>
+            				    <li><a href="ChangeLanguage?language=en"><fmt:message key="english" bundle="${BundleContent}"/></a></li>
+            			</ul>
+            		</div>
 
             		<div class="header-user-menu">
             		<c:choose>
@@ -20,12 +38,12 @@
             			<ul>
             			<c:choose>
             			    <c:when test="${sessionScope.role == 'STUDENT'}">
-            				    <li><a href="Settings">Settings</a></li>
-            				    <li><a href="ShowResults">Results</a></li>
-            				    <li><a href="Logout" class="highlight">Logout</a></li>
+            				    <li><a href="Settings"><fmt:message key="settings" bundle="${BundleContent}"/></a></li>
+            				    <li><a href="ShowResults"><fmt:message key="Results" bundle="${BundleContent}"/></a></li>
+            				    <li><a href="Logout" class="highlight"><fmt:message key="logout" bundle="${BundleContent}"/></a></li>
             				</c:when>
             				<c:otherwise>
-            				    <li><a href="Logout" class="highlight">Logout</a></li>
+            				    <li><a href="Logout" class="highlight"><fmt:message key="logout" bundle="${BundleContent}"/></a></li>
             			    </c:otherwise>
             			</c:choose>
             			</ul>

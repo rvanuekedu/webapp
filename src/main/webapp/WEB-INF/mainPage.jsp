@@ -15,6 +15,16 @@
 
     <body>
 
+    <c:choose>
+        <c:when test="${empty sessionScope.language}">
+            <fmt:setLocale value="en"/>
+        </c:when>
+        <c:otherwise>
+            <fmt:setLocale value="${sessionScope.language}"/>
+        </c:otherwise>
+    </c:choose>
+    <fmt:setBundle var="BundleContent" basename="Content"/>
+
         <%@ include file="jspf/header.jspf" %>
 
         <div class="filter">
@@ -25,7 +35,7 @@
                                 <c:if test="${not empty unblockedStudents}">
                                     <div class="block-student block-unblock">
                                         <form action="BlockStudent" method="POST">
-                                         <label class="label">Select student:</label>
+                                         <label class="label"><fmt:message key="select student" bundle="${BundleContent}"/></label>
                                          <br>
                                             <select name="blockStudents">
                                                 <c:forEach items="${unblockedStudents}" var="student">
@@ -33,7 +43,7 @@
                                                 </c:forEach>
                                             </select>
                                             <br>
-                                            <button class="blockStudent" type="submit" >Block student</button>
+                                            <button class="blockStudent" type="submit" ><fmt:message key="block student" bundle="${BundleContent}"/></button>
                                         </form>
                                     </div>
                                 </c:if>
@@ -41,7 +51,7 @@
                                 <c:if test="${not empty blockedStudents}">
                                     <div class="unblock-student block-unblock" >
                                         <form action="UnblockStudent" method="POST">
-                                        <label class="label">Select student:</label>
+                                        <label class="label"><fmt:message key="select student" bundle="${BundleContent}"/></label>
                                         <br>
                                             <select name="unblockStudents">
                                                 <c:forEach items="${blockedStudents}" var="student">
@@ -49,13 +59,13 @@
                                                 </c:forEach>
                                             </select>
                                             <br>
-                                            <button class="blockStudent" type="submit" >Unblock student</button>
+                                            <button class="blockStudent" type="submit" ><fmt:message key="unblock student" bundle="${BundleContent}"/></button>
                                         </form>
                                     </div>
                                 </c:if>
 
                                 <div class="addTest">
-                                    <a href="AddTest">Add Test</a>
+                                    <a href="AddTest"><fmt:message key="add test" bundle="${BundleContent}"/></a>
                                 </div>
 
                         </c:when>
@@ -64,7 +74,7 @@
 
                 <div class="searchBySubject block-unblock">
                     <form action="SearchBySubject" method="GET">
-                        <label class="label">Select subject:</label>
+                        <label class="label"><fmt:message key="select subject" bundle="${BundleContent}"/></label>
                         <br>
                         <select name="subject">
                             <c:forEach items="${subjects}" var="subject">
@@ -72,39 +82,39 @@
                             </c:forEach>
                         </select>
                         <br>
-                        <button class="searchBtn blockStudent" type="submit" >Search</button>
+                        <button class="searchBtn blockStudent" type="submit" ><fmt:message key="search" bundle="${BundleContent}"/></button>
                     </form>
                 </div>
 
                 <div class="searchTest">
                 <form action="SearchTest" method="POST">
-                  <input name="testName" placeholder="Input Test name here..." type="text">
+                  <input name="testName" placeholder="<fmt:message key="input test name" bundle="${BundleContent}"/>" type="text">
                   <button type="submit"></button>
                 </form>
                 </div>
 
             <div class="dropLink">
-                <a class="filter-btn" onclick="down()">Filter</a>
+                <a class="filter-btn" onclick="down()"><fmt:message key="Filter" bundle="${BundleContent}"/></a>
                     <ul id="dropdown" class="menu" style="display:none">
-                        <li><a>Sort by test name</a>
+                        <li><a><fmt:message key="sort by name" bundle="${BundleContent}"/></a>
                             <ul>
-                                 <li><a href="/SortTests?sort=byNameA-Z">A-Z</a></li>
-                                 <li><a href="/SortTests?sort=byNameZ-A">Z-A</a></li>
+                                 <li><a href="/SortTests?sort=byNameA-Z"><fmt:message key="A-Z" bundle="${BundleContent}"/></a></li>
+                                 <li><a href="/SortTests?sort=byNameZ-A"><fmt:message key="Z-A" bundle="${BundleContent}"/></a></li>
                             </ul>
                         </li>
-                        <li><a>Sort by subject</a>
+                        <li><a><fmt:message key="sort by subject" bundle="${BundleContent}"/></a>
                             <ul>
-                                 <li><a href="/SortTests?sort=bySubjectA-Z">A-Z</a></li>
-                                 <li><a href="/SortTests?sort=bySubjectZ-A">Z-A</a></li>
+                                 <li><a href="/SortTests?sort=bySubjectA-Z"><fmt:message key="A-Z" bundle="${BundleContent}"/></a></li>
+                                 <li><a href="/SortTests?sort=bySubjectZ-A"><fmt:message key="Z-A" bundle="${BundleContent}"/></a></li>
                             </ul>
                         </li>
-                        <li><a>Sort by complexity</a>
+                        <li><a><fmt:message key="sort by complexity" bundle="${BundleContent}"/></a>
                             <ul>
-                                <li><a href="/SortTests?sort=byComplexityIncrease">increase</a></li>
-                                <li><a href="/SortTests?sort=byComplexityDecrease">decrease</a></li>
+                                <li><a href="/SortTests?sort=byComplexityIncrease"><fmt:message key="increase" bundle="${BundleContent}"/></a></li>
+                                <li><a href="/SortTests?sort=byComplexityDecrease"><fmt:message key="decrease" bundle="${BundleContent}"/></a></li>
                             </ul>
                         </li>
-                        <li><a>Sort by number of questions</a>
+                        <li><a><fmt:message key="sort by number" bundle="${BundleContent}"/></a>
                             <ul>
                                  <li><a href="/SortTests?sort=byNumberOfQuestions0-9">0-9</a></li>
                                  <li><a href="/SortTests?sort=byNumberOfQuestions9-0">9-0</a></li>
@@ -135,12 +145,17 @@
                                             <div class="complexity" style="background-color:red; height: 10%;"></div>
                                         </c:when>
                                      </c:choose>
-                                    <tag:showTestsList/>
+                                    <div class="test-name"><strong>${test.testName}</strong></div>
+                                                                    <div class="test-subject asd"><fmt:message key="subject" bundle="${BundleContent}"/> <strong>${test.subjectName}</strong></div>
+                                                                    <div class="number-of-questions asd"><fmt:message key="number of questions" bundle="${BundleContent}"/> <strong>${test.numberOfQuestions}</strong></div>
+                                                                    <div class="complexity asd"><fmt:message key="complexity" bundle="${BundleContent}"/> <strong>${test.complexityName}</strong></div>
+                                                                    <div class="time-for-test asd"><fmt:message key="time for test" bundle="${BundleContent}"/> <strong>${test.time} <fmt:message key="minutes" bundle="${BundleContent}"/></strong></div>
+                                                                    <div class="btn-pass"><a href="/EnterToTest?testId=${test.id}"><fmt:message key="pass" bundle="${BundleContent}"/></a></div>
                                 </div>
                             </c:forEach>
                         </c:when>
                         <c:otherwise>
-                            <div class="tests-not-found"><p>Test not found</p></div>
+                            <div class="tests-not-found"><p><fmt:message key="test not found" bundle="${BundleContent}"/></p></div>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -168,16 +183,16 @@
                                     <a class="delete" href="DeleteTest?testId=${test.id}" title="Delete" ><img src="../images/delete.png" alt=""></a>
                                 </div>
                                 <div class="test-name"><strong>${test.testName}</strong></div>
-                                <div class="test-subject asd">Subject: <strong>${test.subjectName}</strong></div>
-                                <div class="number-of-questions asd">Number of questions: <strong>${test.numberOfQuestions}</strong></div>
-                                <div class="complexity asd">Complexity: <strong>${test.complexityName}</strong></div>
-                                <div class="time-for-test asd">Time for test: <strong>${test.time} minutes</strong></div>
-                                <div class="btn-pass"><a href="/EnterToTest?testId=${test.id}">View</a></div>
+                                <div class="test-subject asd"><fmt:message key="subject" bundle="${BundleContent}"/> <strong>${test.subjectName}</strong></div>
+                                <div class="number-of-questions asd"><fmt:message key="number of questions" bundle="${BundleContent}"/> <strong>${test.numberOfQuestions}</strong></div>
+                                <div class="complexity asd"><fmt:message key="complexity" bundle="${BundleContent}"/> <strong>${test.complexityName}</strong></div>
+                                <div class="time-for-test asd"><fmt:message key="time for test" bundle="${BundleContent}"/> <strong>${test.time} <fmt:message key="minutes" bundle="${BundleContent}"/></strong></div>
+                                <div class="btn-pass"><a href="/EnterToTest?testId=${test.id}"><fmt:message key="view" bundle="${BundleContent}"/></a></div>
                             </div>
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
-                        <div class="tests-not-found"><p>Test not found</p></div>
+                        <div class="tests-not-found"><p><fmt:message key="test not found" bundle="${BundleContent}"/></p></div>
                     </c:otherwise>
                 </c:choose>
                 </div>

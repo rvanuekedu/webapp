@@ -3,7 +3,7 @@
     <jsp-version>2.0</jsp-version>
     <short-name>TestsList</short-name>
     <tag>
-        <name>showTestsList</name>
+        <name>showTimer</name>
         <tag-class>ua.nure.samoylenko.web.tag.BeanTag</tag-class>
         <body-content>empty</body-content>
     </tag>
