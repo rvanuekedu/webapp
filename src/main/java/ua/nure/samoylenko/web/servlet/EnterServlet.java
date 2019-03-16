@@ -3,12 +3,10 @@ package ua.nure.samoylenko.web.servlet;
 import ua.nure.samoylenko.dto.RegisterDTO;
 import ua.nure.samoylenko.dto.TestDTO;
 import ua.nure.samoylenko.entities.Student;
+import ua.nure.samoylenko.entities.Subject;
 import ua.nure.samoylenko.entities.User;
 import ua.nure.samoylenko.exception.AppException;
-import ua.nure.samoylenko.web.service.ServicesContainer;
-import ua.nure.samoylenko.web.service.StudentService;
-import ua.nure.samoylenko.web.service.TestService;
-import ua.nure.samoylenko.web.service.UserService;
+import ua.nure.samoylenko.web.service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +22,7 @@ public class EnterServlet extends HttpServlet {
     private UserService userService;
     private TestService testService;
     private StudentService studentService;
+    private SubjectService subjectService;
 
     @Override
     public void init() {
@@ -31,6 +30,7 @@ public class EnterServlet extends HttpServlet {
         userService = servicesContainer.getUserService();
         testService = servicesContainer.getTestService();
         studentService = servicesContainer.getStudentService();
+        subjectService = servicesContainer.getSubjectService();
     }
 
     @Override
@@ -62,17 +62,14 @@ public class EnterServlet extends HttpServlet {
         User user = (User) httpServletRequest.getSession().getAttribute("user");
         List<Integer> passedTest = (List<Integer>) httpServletRequest.getSession().getAttribute("passedTest");
 
-        if (null != user) {
-
-            if (studentService.studentIsBlocked(user.getEmail())) {
-                throw new AppException("This user is blocked");
-            }
+        if (null != user && !studentService.studentIsBlocked(user.getEmail())) {
 
             String role = (String) httpServletRequest.getSession().getAttribute("role");
 
             List<TestDTO> tests = testService.getAllTestsWithSubjectNameAndNumberOfQuestions();
             List<Student> unblockedStudents = studentService.getAllUnblockedStudents();
             List<Student> blockedStudents = studentService.getAllBlockedStudents();
+            List<Subject> subjects = subjectService.getAllSubjects();
 
             tests.removeIf(testDTO -> passedTest.contains(testDTO.getId()));
 
@@ -86,9 +83,12 @@ public class EnterServlet extends HttpServlet {
                 httpServletRequest.setAttribute("tests", tests);
             }
 
+            httpServletRequest.setAttribute("subjects", subjects);
+
             httpServletRequest.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(httpServletRequest, httpServletResponse);
         } else {
             httpServletResponse.sendRedirect("startPage.jsp");
+
         }
     }
 

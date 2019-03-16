@@ -3,8 +3,6 @@ package ua.nure.samoylenko.dao.impl;
 import ua.nure.samoylenko.dao.TestDAO;
 import ua.nure.samoylenko.db.ConnectionProvider;
 import ua.nure.samoylenko.dto.ResultShowDTO;
-import ua.nure.samoylenko.dto.TestChangeComplexityDTO;
-import ua.nure.samoylenko.dto.TestChangeTimeDTO;
 import ua.nure.samoylenko.dto.TestDTO;
 import ua.nure.samoylenko.entities.Test;
 import ua.nure.samoylenko.exception.DBException;
@@ -19,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestDAOImpl implements TestDAO {
-
 
 
     @Override
@@ -120,7 +117,7 @@ public class TestDAOImpl implements TestDAO {
                 tests.add(currentTest);
             }
             return tests;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all tests", e);
@@ -155,7 +152,7 @@ public class TestDAOImpl implements TestDAO {
                 tests.add(currentTest);
             }
             return tests;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all tests", e);
@@ -163,8 +160,39 @@ public class TestDAOImpl implements TestDAO {
     }
 
     @Override
-    public List<Test> getAllTestBySubject() {
-        return null;
+    public List<TestDTO> getAllTestBySubject(String subject) {
+        List<TestDTO> tests = new ArrayList<>();
+        ConnectionProvider provider = ConnectionProvider.getInstance();
+        PreparedStatement statement;
+        ResultSet resultSet;
+        try (Connection connection = provider.getConnection()) {
+            statement = connection.prepareStatement(SQLConstants.SELECT_ALL_TESTS_BY_SUBJECT);
+            statement.setString(1, subject);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                TestDTO currentTest = new TestDTO();
+                Integer testId = resultSet.getInt("id");
+                String testName = resultSet.getString("test_name");
+                String complexity = resultSet.getString("complexity");
+                Integer time = resultSet.getInt("time");
+                String subjectName = resultSet.getString("subject_name");
+                Integer subjectId = resultSet.getInt("subjects_id");
+                Integer numberOfQuestions = resultSet.getInt("number_of_questions");
+                currentTest.setId(testId);
+                currentTest.setTestName(testName);
+                currentTest.setComplexityName(complexity);
+                currentTest.setTime(time);
+                currentTest.setSubjectName(subjectName);
+                currentTest.setSubjectId(subjectId);
+                currentTest.setNumberOfQuestions(numberOfQuestions);
+                tests.add(currentTest);
+            }
+            return tests;
+        } catch (NamingException e) {
+            throw new DBException("Can't obtain SQL connection", e);
+        } catch (SQLException e) {
+            throw new DBException("Can`t obtain all tests", e);
+        }
     }
 
     @Override
@@ -195,7 +223,7 @@ public class TestDAOImpl implements TestDAO {
                 tests.add(currentTest);
             }
             return tests;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all tests", e);
@@ -230,7 +258,7 @@ public class TestDAOImpl implements TestDAO {
                 tests.add(currentTest);
             }
             return tests;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all tests", e);
@@ -265,7 +293,7 @@ public class TestDAOImpl implements TestDAO {
                 tests.add(currentTest);
             }
             return tests;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all tests", e);
@@ -322,7 +350,7 @@ public class TestDAOImpl implements TestDAO {
                 tests.add(currentTest);
             }
             return tests;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain test by name", e);

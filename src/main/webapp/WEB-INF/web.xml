@@ -46,6 +46,7 @@
         <url-pattern>/Settings</url-pattern>
         <url-pattern>/ChangeEmail</url-pattern>
         <url-pattern>/ChangePassword</url-pattern>
+        <url-pattern>/SearchBySubject</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>

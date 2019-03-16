@@ -62,19 +62,26 @@
                     </c:choose>
                 </div>
 
-        <c:choose>
-            <c:when test="${sessionScope.role == 'ADMIN'}">
-                <div class="searchTest" style="margin-top: 53px;">
-            </c:when>
-            <c:otherwise>
+                <div class="searchBySubject block-unblock">
+                    <form action="SearchBySubject" method="GET">
+                        <label class="label">Select subject:</label>
+                        <br>
+                        <select name="subject">
+                            <c:forEach items="${subjects}" var="subject">
+                                <option value="${subject.name}"> ${subject.name}</option>
+                            </c:forEach>
+                        </select>
+                        <br>
+                        <button class="searchBtn blockStudent" type="submit" >Search</button>
+                    </form>
+                </div>
+
                 <div class="searchTest">
-            </c:otherwise>
-        </c:choose>
                 <form action="SearchTest" method="POST">
                   <input name="testName" placeholder="Input Test name here..." type="text">
                   <button type="submit"></button>
                 </form>
-            </div>
+                </div>
 
             <div class="dropLink">
                 <a class="filter-btn" onclick="down()">Filter</a>

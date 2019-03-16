@@ -11,7 +11,7 @@ import java.util.List;
 public class TestServiceImpl implements TestService {
     private TestDAO testDAO;
 
-    public TestServiceImpl(TestDAO testDAO){
+    public TestServiceImpl(TestDAO testDAO) {
         this.testDAO = testDAO;
     }
 
@@ -41,8 +41,8 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public List<Test> getAllTestBySubject() {
-        return testDAO.getAllTestBySubject();
+    public List<TestDTO> getAllTestBySubject(String subject) {
+        return testDAO.getAllTestBySubject(subject);
     }
 
     @Override

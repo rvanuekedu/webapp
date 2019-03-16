@@ -95,6 +95,8 @@ public class SQLConstants {
 
     public static final String UPDATE_TEST_TIME = "UPDATE tests SET `time`=? WHERE id=?";
 
+    public static final String SELECT_ALL_TESTS_BY_SUBJECT = "SELECT tests.*, count(tests_id) AS number_of_questions, subject_name FROM tests LEFT JOIN questions ON tests.id=tests_id JOIN subjects ON subjects_id=subjects.id WHERE subject_name = ? GROUP BY tests.id ORDER BY tests.id DESC;";
+
 
 
     public static final String SELECT_USERS_WHERE_EMAIL = "SELECT * FROM users WHERE email = ?";

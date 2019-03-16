@@ -33,7 +33,7 @@ img {
 
 .adminPanel {
     display: inline-block;
-    width: 55%;
+    width: 50%;
 }
 
 .block-unblock select {
@@ -114,11 +114,12 @@ img {
     display: inline-block;
     position: absolute;
     top: 2%;
+    margin-top: 53px;
 }
 
 .filter .dropLink {
     position: absolute;
-    left: 85%;
+    left: 88%;
     top: 60%;
 }
 
@@ -178,6 +179,7 @@ img {
 }
 
 .block-student {
+    margin-right: 20px;
     display: inline-block;
 }
 
@@ -215,4 +217,9 @@ img {
 
 hr {
     margin-bottom:70px;
+}
+
+.searchBySubject {
+    display: inline-block;
+    margin-right: 30px;
 }
