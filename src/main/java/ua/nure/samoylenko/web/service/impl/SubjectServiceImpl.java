@@ -10,13 +10,8 @@ import java.util.List;
 public class SubjectServiceImpl implements SubjectService {
     private SubjectDAO subjectDAO;
 
-    public SubjectServiceImpl(SubjectDAO subjectDAO){
+    public SubjectServiceImpl(SubjectDAO subjectDAO) {
         this.subjectDAO = subjectDAO;
-    }
-
-    @Override
-    public String getSubjectNameById(int id) {
-        return subjectDAO.getSubjectNameById(id);
     }
 
     @Override

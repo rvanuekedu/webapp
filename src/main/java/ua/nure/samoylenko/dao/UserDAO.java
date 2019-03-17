@@ -6,17 +6,17 @@ import ua.nure.samoylenko.dto.RegisterDTO;
 import ua.nure.samoylenko.entities.User;
 
 public interface UserDAO {
-	
-	User getUser(String email);
-	
-	void createUser(RegisterDTO registerDTO);
 
-	boolean isUserExist(RegisterDTO registerDTO);
+    User getUser(String email);
 
-	boolean checkUsersDuplicate(String email);
+    void createUser(RegisterDTO registerDTO);
 
-	void changeUserEmail (ChangeEmailDTO changeEmailDTO);
+    boolean isUserExist(RegisterDTO registerDTO);
 
-	void changeUserPassword (ChangePasswordDTO changePasswordDTO);
-	
+    boolean checkUsersDuplicate(String email);
+
+    void changeUserEmail(ChangeEmailDTO changeEmailDTO);
+
+    void changeUserPassword(ChangePasswordDTO changePasswordDTO);
+
 }

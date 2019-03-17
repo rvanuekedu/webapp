@@ -1,55 +1,55 @@
 package ua.nure.samoylenko.entities;
 
 public class Student {
-	
-	private Integer id;
-	
-	private String firstName;
-	
-	private String secondName;
-	
-	private String userEmail;
-	
-	private Boolean isBanned;
 
-	public Integer getId() {
-		return id;
-	}
+    private Integer id;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private String firstName;
 
-	public String getFirstName() {
-		return firstName;
-	}
+    private String secondName;
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    private String userEmail;
 
-	public String getSecondName() {
-		return secondName;
-	}
+    private Boolean isBanned;
 
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getUserEmail() {
-		return userEmail;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public Boolean getIsBanned() {
-		return isBanned;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setIsBanned(Boolean isBanned) {
-		this.isBanned = isBanned;
-	}
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public Boolean getIsBanned() {
+        return isBanned;
+    }
+
+    public void setIsBanned(Boolean isBanned) {
+        this.isBanned = isBanned;
+    }
 
 }

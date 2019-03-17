@@ -1,7 +1,6 @@
 package ua.nure.samoylenko.web.service.impl;
 
 import ua.nure.samoylenko.dao.TestDAO;
-import ua.nure.samoylenko.dto.ResultShowDTO;
 import ua.nure.samoylenko.dto.TestDTO;
 import ua.nure.samoylenko.entities.Test;
 import ua.nure.samoylenko.web.service.TestService;
@@ -26,16 +25,6 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public List<Test> getAllTests() {
-        return testDAO.getAllTests();
-    }
-
-    @Override
-    public List<TestDTO> getAllTestsWithSubjectName() {
-        return testDAO.getAllTestsWithSubjectName();
-    }
-
-    @Override
     public List<TestDTO> getAllTestsWithSubjectNameAndNumberOfQuestions() {
         return testDAO.getAllTestsWithSubjectNameAndNumberOfQuestions();
     }
@@ -43,21 +32,6 @@ public class TestServiceImpl implements TestService {
     @Override
     public List<TestDTO> getAllTestBySubject(int subjectId) {
         return testDAO.getAllTestBySubject(subjectId);
-    }
-
-    @Override
-    public List<TestDTO> getAllTestSortedByName() {
-        return testDAO.getAllTestSortedByName();
-    }
-
-    @Override
-    public List<TestDTO> getAllTestSortedBySubject() {
-        return testDAO.getAllTestSortedBySubject();
-    }
-
-    @Override
-    public List<TestDTO> getAllTestSortedByNumberOfQuestions() {
-        return testDAO.getAllTestSortedByNumberOfQuestions();
     }
 
     @Override
@@ -88,11 +62,5 @@ public class TestServiceImpl implements TestService {
     @Override
     public void changeTestComplexity(String complexityName, int testId) {
         testDAO.changeTestComplexity(complexityName, testId);
-    }
-
-
-    @Override
-    public ResultShowDTO getTestWithSubjectName(ResultShowDTO resultShowDTO) {
-        return null;
     }
 }

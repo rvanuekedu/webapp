@@ -1,6 +1,5 @@
 package ua.nure.samoylenko.web.service;
 
-import ua.nure.samoylenko.dto.ResultShowDTO;
 import ua.nure.samoylenko.dto.TestDTO;
 import ua.nure.samoylenko.entities.Test;
 
@@ -12,19 +11,9 @@ public interface TestService {
 
     Test getTest(int id);
 
-    List<Test> getAllTests();
-
-    List<TestDTO> getAllTestsWithSubjectName();
-
     List<TestDTO> getAllTestsWithSubjectNameAndNumberOfQuestions();
 
     List<TestDTO> getAllTestBySubject(int subjectId);
-
-    List<TestDTO> getAllTestSortedByName();
-
-    List<TestDTO> getAllTestSortedBySubject();
-
-    List<TestDTO> getAllTestSortedByNumberOfQuestions();
 
     Integer getTestTimeByTestId(int id);
 
@@ -37,8 +26,5 @@ public interface TestService {
     void changeTestTime(int time, int testId);
 
     void changeTestComplexity(String complexityName, int testId);
-
-    ResultShowDTO getTestWithSubjectName(ResultShowDTO resultShowDTO);
-
 
 }

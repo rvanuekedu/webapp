@@ -2,24 +2,24 @@ package ua.nure.samoylenko.dto;
 
 public class TestChangeComplexityDTO {
 
-	private Integer testId;
-	
-	private String complexity;
+    private Integer testId;
 
-	public Integer getTestId() {
-		return testId;
-	}
+    private String complexity;
 
-	public void setTestId(Integer testId) {
-		this.testId = testId;
-	}
+    public Integer getTestId() {
+        return testId;
+    }
 
-	public String getComplexity() {
-		return complexity;
-	}
+    public void setTestId(Integer testId) {
+        this.testId = testId;
+    }
 
-	public void setComplexity(String complexity) {
-		this.complexity = complexity;
-	}
-	
+    public String getComplexity() {
+        return complexity;
+    }
+
+    public void setComplexity(String complexity) {
+        this.complexity = complexity;
+    }
+
 }

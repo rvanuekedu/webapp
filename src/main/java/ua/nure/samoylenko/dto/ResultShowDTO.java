@@ -3,75 +3,75 @@ package ua.nure.samoylenko.dto;
 import java.sql.Date;
 
 public class ResultShowDTO {
-	
-	private Integer testId;
-	
-	private Integer studentId;
-	
-	private String testSubject;
-	
-	private String testComplexity;
-	
-	private String TestName;
 
-	private Integer valueOfResult;
-	
-	private Date date;
-	
-	public Integer getTestId() {
-		return testId;
-	}
+    private Integer testId;
 
-	public void setTestId(Integer testId) {
-		this.testId = testId;
-	}
+    private Integer studentId;
 
-	public Integer getStudentId() {
-		return studentId;
-	}
+    private String testSubject;
 
-	public void setStudentId(Integer studentId) {
-		this.studentId = studentId;
-	}
+    private String testComplexity;
 
-	public String getTestSubject() {
-		return testSubject;
-	}
+    private String TestName;
 
-	public void setTestSubject(String testSubject) {
-		this.testSubject = testSubject;
-	}
+    private Integer valueOfResult;
 
-	public String getTestComplexity() {
-		return testComplexity;
-	}
+    private Date date;
 
-	public void setTestComplexity(String testComplexity) {
-		this.testComplexity = testComplexity;
-	}
+    public Integer getTestId() {
+        return testId;
+    }
 
-	public String getTestName() {
-		return TestName;
-	}
+    public void setTestId(Integer testId) {
+        this.testId = testId;
+    }
 
-	public void setTestName(String testName) {
-		TestName = testName;
-	}
+    public Integer getStudentId() {
+        return studentId;
+    }
 
-	public Integer getValueOfResult() {
-		return valueOfResult;
-	}
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
 
-	public void setValueOfResult(Integer valueOfResult) {
-		this.valueOfResult = valueOfResult;
-	}
+    public String getTestSubject() {
+        return testSubject;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public void setTestSubject(String testSubject) {
+        this.testSubject = testSubject;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}  
+    public String getTestComplexity() {
+        return testComplexity;
+    }
+
+    public void setTestComplexity(String testComplexity) {
+        this.testComplexity = testComplexity;
+    }
+
+    public String getTestName() {
+        return TestName;
+    }
+
+    public void setTestName(String testName) {
+        TestName = testName;
+    }
+
+    public Integer getValueOfResult() {
+        return valueOfResult;
+    }
+
+    public void setValueOfResult(Integer valueOfResult) {
+        this.valueOfResult = valueOfResult;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
 }

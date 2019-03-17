@@ -7,16 +7,16 @@ import ua.nure.samoylenko.entities.User;
 
 public interface UserService {
 
-	User getUser(String email);
+    User getUser(String email);
 
-	void createUser(RegisterDTO registerDTO);
+    void createUser(RegisterDTO registerDTO);
 
-	boolean isUserExist(RegisterDTO registerDTO);
+    boolean isUserExist(RegisterDTO registerDTO);
 
-	boolean checkUsersDuplicate(String email);
+    boolean checkUsersDuplicate(String email);
 
-	void changeUserEmail (ChangeEmailDTO changeEmailDTO);
+    void changeUserEmail(ChangeEmailDTO changeEmailDTO);
 
-	void changeUserPassword (ChangePasswordDTO changePasswordDTO);
-	
+    void changeUserPassword(ChangePasswordDTO changePasswordDTO);
+
 }

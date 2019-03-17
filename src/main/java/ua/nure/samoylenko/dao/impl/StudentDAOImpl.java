@@ -18,58 +18,6 @@ import java.util.List;
 public class StudentDAOImpl implements StudentDAO {
 
     @Override
-    public Student getStudentById(int id) {
-        ConnectionProvider provider = ConnectionProvider.getInstance();
-        PreparedStatement statement;
-        ResultSet resultSet;
-        Student student = null;
-        try (Connection connection = provider.getConnection()) {
-            statement = connection.prepareStatement(SQLConstants.GET_STUDENT_BY_ID);
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                student = executeStudent(resultSet);
-            }
-            return student;
-        } catch (NamingException e) {
-            throw new DBException("Can't obtain SQL connection", e);
-        } catch (SQLException e) {
-            throw new DBException("Can`t obtain student by id", e);
-        }
-    }
-
-    @Override
-    public List<Student> getAllStudents() {
-        List<Student> students = new ArrayList<>();
-        ConnectionProvider provider = ConnectionProvider.getInstance();
-        PreparedStatement statement;
-        ResultSet resultSet;
-        try (Connection connection = provider.getConnection()) {
-            statement = connection.prepareStatement(SQLConstants.SELECT_ALL_STUDENTS);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Student currentStudent = new Student();
-                String firstName = resultSet.getString("first_name");
-                String secondName = resultSet.getString("second_name");
-                String userEmail = resultSet.getString("user_email");
-                Boolean isBanned = resultSet.getBoolean("is_banned");
-                Integer id = resultSet.getInt("id");
-                currentStudent.setId(id);
-                currentStudent.setFirstName(firstName);
-                currentStudent.setSecondName(secondName);
-                currentStudent.setUserEmail(userEmail);
-                currentStudent.setIsBanned(isBanned);
-                students.add(currentStudent);
-            }
-            return students;
-        } catch (NamingException e) {
-            throw new DBException("Can't obtain SQL connection", e);
-        } catch (SQLException e) {
-            throw new DBException("Can`t obtain all students", e);
-        }
-    }
-
-    @Override
     public void blockStudent(int id) {
         ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
@@ -170,18 +118,7 @@ public class StudentDAOImpl implements StudentDAO {
             statement = connection.prepareStatement(SQLConstants.SELECT_ALL_BLOCKED_STUDENTS);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Student currentStudent = new Student();
-                String firstName = resultSet.getString("first_name");
-                String secondName = resultSet.getString("second_name");
-                String userEmail = resultSet.getString("user_email");
-                Boolean isBanned = resultSet.getBoolean("is_banned");
-                Integer id = resultSet.getInt("id");
-                currentStudent.setId(id);
-                currentStudent.setFirstName(firstName);
-                currentStudent.setSecondName(secondName);
-                currentStudent.setUserEmail(userEmail);
-                currentStudent.setIsBanned(isBanned);
-                students.add(currentStudent);
+                executeAllStudents(students, resultSet);
             }
             return students;
         } catch (NamingException e) {
@@ -201,18 +138,7 @@ public class StudentDAOImpl implements StudentDAO {
             statement = connection.prepareStatement(SQLConstants.SELECT_ALL_UNBLOCKED_STUDENTS);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Student currentStudent = new Student();
-                String firstName = resultSet.getString("first_name");
-                String secondName = resultSet.getString("second_name");
-                String userEmail = resultSet.getString("user_email");
-                Boolean isBanned = resultSet.getBoolean("is_banned");
-                Integer id = resultSet.getInt("id");
-                currentStudent.setId(id);
-                currentStudent.setFirstName(firstName);
-                currentStudent.setSecondName(secondName);
-                currentStudent.setUserEmail(userEmail);
-                currentStudent.setIsBanned(isBanned);
-                students.add(currentStudent);
+                executeAllStudents(students, resultSet);
             }
             return students;
         } catch (NamingException e) {
@@ -220,6 +146,21 @@ public class StudentDAOImpl implements StudentDAO {
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all students", e);
         }
+    }
+
+    private void executeAllStudents(List<Student> students, ResultSet resultSet) throws SQLException {
+        Student currentStudent = new Student();
+        String firstName = resultSet.getString("first_name");
+        String secondName = resultSet.getString("second_name");
+        String userEmail = resultSet.getString("user_email");
+        Boolean isBanned = resultSet.getBoolean("is_banned");
+        Integer id = resultSet.getInt("id");
+        currentStudent.setId(id);
+        currentStudent.setFirstName(firstName);
+        currentStudent.setSecondName(secondName);
+        currentStudent.setUserEmail(userEmail);
+        currentStudent.setIsBanned(isBanned);
+        students.add(currentStudent);
     }
 
     @Override

@@ -15,27 +15,6 @@ import java.util.List;
 public class SubjectDAOImpl implements SubjectDAO {
 
     @Override
-    public String getSubjectNameById(int id) {
-        ConnectionProvider provider = ConnectionProvider.getInstance();
-        PreparedStatement statement;
-        ResultSet resultSet;
-        String subjectName = null;
-        try (Connection connection = provider.getConnection()) {
-            statement = connection.prepareStatement(SQLConstants.GET_SUBJECT_BY_ID);
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                subjectName = resultSet.getString("subject_name");
-            }
-            return subjectName;
-        } catch (NamingException e) {
-            throw new DBException("Can't obtain SQL connection", e);
-        } catch (SQLException e) {
-            throw new DBException("Can`t obtain subject by id", e);
-        }
-    }
-
-    @Override
     public List<Subject> getAllSubjects() {
         List<Subject> subjects = new ArrayList<>();
         ConnectionProvider provider = ConnectionProvider.getInstance();
@@ -64,7 +43,7 @@ public class SubjectDAOImpl implements SubjectDAO {
     public Integer addSubject(SubjectDTO subjectDTO) {
         ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
-        ResultSet resultSet = null;
+        ResultSet resultSet;
         Integer subjectId = null;
         try (Connection connection = provider.getConnection()) {
             statement = connection.prepareStatement(SQLConstants.INSERT_NEW_SUBJECT, Statement.RETURN_GENERATED_KEYS);

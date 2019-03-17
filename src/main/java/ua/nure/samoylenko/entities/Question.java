@@ -2,42 +2,42 @@ package ua.nure.samoylenko.entities;
 
 public class Question {
 
-	private Integer questionId;
+    private Integer questionId;
 
-	private String questionText;
-	
-	private Integer testId;
+    private String questionText;
 
-	public Integer getQuestionId() {
-		return questionId;
-	}
+    private Integer testId;
 
-	public void setQuestionId(Integer questionId) {
-		this.questionId = questionId;
-	}
+    public Integer getQuestionId() {
+        return questionId;
+    }
 
-	public String getQuestionText() {
-		return questionText;
-	}
+    public void setQuestionId(Integer questionId) {
+        this.questionId = questionId;
+    }
 
-	public void setQuestionText(String questionText) {
-		this.questionText = questionText;
-	}
+    public String getQuestionText() {
+        return questionText;
+    }
 
-	public Integer getTestId() {
-		return testId;
-	}
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
+    }
 
-	public void setTestId(Integer testId) {
-		this.testId = testId;
-	}
+    public Integer getTestId() {
+        return testId;
+    }
 
-	@Override
-	public String toString() {
-		return "Question{" +
-				"questionId=" + questionId +
-				", questionText='" + questionText + '\'' +
-				", testId=" + testId +
-				'}';
-	}
+    public void setTestId(Integer testId) {
+        this.testId = testId;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "questionId=" + questionId +
+                ", questionText='" + questionText + '\'' +
+                ", testId=" + testId +
+                '}';
+    }
 }

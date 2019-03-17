@@ -2,60 +2,60 @@ package ua.nure.samoylenko.entities;
 
 public class Result {
 
-	private int id;
+    private int id;
 
-	private String valueOfResult;
+    private String valueOfResult;
 
-	private String date;
-	
-	private Integer tests_id;
-	
-	private Integer students_id;
+    private String date;
 
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
+    private Integer tests_id;
 
-	public String getValueOfResult() {
-		return valueOfResult;
-	}
+    private Integer students_id;
 
-	public void setValueOfResult(String valueOfResult) {
-		this.valueOfResult = valueOfResult;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getDate() {
-		return date;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+    public String getValueOfResult() {
+        return valueOfResult;
+    }
 
-	public int getTests_id() {
-		return tests_id;
-	}
+    public void setValueOfResult(String valueOfResult) {
+        this.valueOfResult = valueOfResult;
+    }
 
-	public void setTests_id(int tests_id) {
-		this.tests_id = tests_id;
-	}
+    public String getDate() {
+        return date;
+    }
 
-	public Integer getStudents_id() {
-		return students_id;
-	}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-	public void setStudents_id(Integer students_id) {
-		this.students_id = students_id;
-	}
+    public int getTests_id() {
+        return tests_id;
+    }
 
-	@Override
-	public String toString() {
-		return "Result [valueOfResult=" + valueOfResult + ", date=" + date + ", tests_id=" + tests_id + ", students_id="
-				+ students_id + "]";
-	}
+    public void setTests_id(int tests_id) {
+        this.tests_id = tests_id;
+    }
+
+    public Integer getStudents_id() {
+        return students_id;
+    }
+
+    public void setStudents_id(Integer students_id) {
+        this.students_id = students_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Result [valueOfResult=" + valueOfResult + ", date=" + date + ", tests_id=" + tests_id + ", students_id="
+                + students_id + "]";
+    }
 
 }

@@ -1,40 +1,40 @@
 package ua.nure.samoylenko.entities;
 
 public class User {
-	
-	private String email;
-	
-	private String password;
-	
-	private String userType;
 
-	public String getEmail() {
-		return email;
-	}
+    private String email;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    private String password;
 
-	public String getPassword() {
-		return password;
-	}
+    private String userType;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getUserType() {
-		return userType;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	@Override
-	public String toString() {
-		return "User [email=" + email + ", userType=" + userType + "]";
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    @Override
+    public String toString() {
+        return "User [email=" + email + ", userType=" + userType + "]";
+    }
 
 }

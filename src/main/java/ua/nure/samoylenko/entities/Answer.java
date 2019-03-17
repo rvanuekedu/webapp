@@ -2,53 +2,53 @@ package ua.nure.samoylenko.entities;
 
 public class Answer {
 
-	private Integer answerId;
+    private Integer answerId;
 
-	private String answerText;
-	
-	private Boolean isCorrect;
-	
-	private Integer questionId;
+    private String answerText;
 
-	public Integer getAnswerId() {
-		return answerId;
-	}
+    private Boolean isCorrect;
 
-	public void setAnswerId(Integer answerId) {
-		this.answerId = answerId;
-	}
+    private Integer questionId;
 
-	public String getAnswerText() {
-		return answerText;
-	}
+    public Integer getAnswerId() {
+        return answerId;
+    }
 
-	public void setAnswerText(String answerText) {
-		this.answerText = answerText;
-	}
+    public void setAnswerId(Integer answerId) {
+        this.answerId = answerId;
+    }
 
-	public Boolean getIsCorrect() {
-		return isCorrect;
-	}
+    public String getAnswerText() {
+        return answerText;
+    }
 
-	public void setCorrect(Boolean correct) {
-		isCorrect = correct;
-	}
+    public void setAnswerText(String answerText) {
+        this.answerText = answerText;
+    }
 
-	public Integer getQuestionId() {
-		return questionId;
-	}
+    public Boolean getIsCorrect() {
+        return isCorrect;
+    }
 
-	public void setQuestionId(Integer questionId) {
-		this.questionId = questionId;
-	}
+    public void setCorrect(Boolean correct) {
+        isCorrect = correct;
+    }
 
-	@Override
-	public String toString() {
-		return "Answer{" +
-				"answerId=" + answerId +
-				", answerText='" + answerText + '\'' +
-				", isCorrect=" + isCorrect +
-				", questionId=" + questionId +
-				'}';
-	}
+    public Integer getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(Integer questionId) {
+        this.questionId = questionId;
+    }
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "answerId=" + answerId +
+                ", answerText='" + answerText + '\'' +
+                ", isCorrect=" + isCorrect +
+                ", questionId=" + questionId +
+                '}';
+    }
 }

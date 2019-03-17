@@ -2,9 +2,13 @@ package ua.nure.samoylenko.dto;
 
 public class ShowQuestionDTO {
     private String questionText;
+
     private String answerText;
+
     private Boolean isCorrect;
+
     private Integer questionId;
+
     private Integer answerQuestionId;
 
     public String getQuestionText() {

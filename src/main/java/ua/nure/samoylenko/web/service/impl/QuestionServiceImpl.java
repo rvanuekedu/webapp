@@ -2,7 +2,6 @@ package ua.nure.samoylenko.web.service.impl;
 
 import ua.nure.samoylenko.dao.QuestionDAO;
 import ua.nure.samoylenko.dto.QuestionDTO;
-import ua.nure.samoylenko.dto.ShowQuestionDTO;
 import ua.nure.samoylenko.entities.Question;
 import ua.nure.samoylenko.web.service.QuestionService;
 
@@ -30,8 +29,4 @@ public class QuestionServiceImpl implements QuestionService {
         questionDAO.deleteQuestion(questionId);
     }
 
-    @Override
-    public List<ShowQuestionDTO> getAllQuestionsByTestId(int id) {
-        return questionDAO.getAllQuestionsByTestId(id);
-    }
 }

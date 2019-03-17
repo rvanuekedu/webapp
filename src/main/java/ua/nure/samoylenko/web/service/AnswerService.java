@@ -7,16 +7,12 @@ import java.util.List;
 
 public interface AnswerService {
 
-	void createAnswerForQuestionByQuestionId(AnswerDTO answerDTO);
+    void createAnswerForQuestionByQuestionId(AnswerDTO answerDTO);
 
-	void deleteAnswerByName(AnswerDTO answerDTO);
+    List<Answer> getAllAnswersByTestId(int id);
 
-	List<Answer> getAnswersByQuestionsId(AnswerDTO answerDTO);
+    List<String> getTrueAnswersByQuestionId(int id);
 
-	List<Answer> getAllAnswersByTestId(int id);
+    void deleteAnswerById(int answerId);
 
-	List<String> getTrueAnswersByQuestionId(int id);
-
-	void deleteAnswerById (int answerId);
-	
 }

@@ -3,7 +3,6 @@ package ua.nure.samoylenko.dao.impl;
 import ua.nure.samoylenko.dao.QuestionDAO;
 import ua.nure.samoylenko.db.ConnectionProvider;
 import ua.nure.samoylenko.dto.QuestionDTO;
-import ua.nure.samoylenko.dto.ShowQuestionDTO;
 import ua.nure.samoylenko.entities.Question;
 import ua.nure.samoylenko.exception.DBException;
 import ua.nure.samoylenko.utils.SQLConstants;
@@ -29,14 +28,7 @@ public class QuestionDAOImpl implements QuestionDAO {
             pstatement.setInt(1, id);
             resultSet = pstatement.executeQuery();
             while (resultSet.next()) {
-                Question currentQuestion = new Question();
-                Integer questionId = resultSet.getInt("id");
-                String qText = resultSet.getString("qText");
-                Integer testId = resultSet.getInt("tests_id");
-                currentQuestion.setQuestionId(questionId);
-                currentQuestion.setQuestionText(qText);
-                currentQuestion.setTestId(testId);
-                questions.add(currentQuestion);
+                executeQuestionsByTestId(questions, resultSet);
             }
             return questions;
         } catch (NamingException e) {
@@ -44,6 +36,17 @@ public class QuestionDAOImpl implements QuestionDAO {
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all questions", e);
         }
+    }
+
+    private void executeQuestionsByTestId(List<Question> questions, ResultSet resultSet) throws SQLException {
+        Question currentQuestion = new Question();
+        Integer questionId = resultSet.getInt("id");
+        String qText = resultSet.getString("qText");
+        Integer testId = resultSet.getInt("tests_id");
+        currentQuestion.setQuestionId(questionId);
+        currentQuestion.setQuestionText(qText);
+        currentQuestion.setTestId(testId);
+        questions.add(currentQuestion);
     }
 
     @Override
@@ -75,38 +78,6 @@ public class QuestionDAOImpl implements QuestionDAO {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t delete question", e);
-        }
-    }
-
-    @Override
-    public List<ShowQuestionDTO> getAllQuestionsByTestId(int id) {
-        List<ShowQuestionDTO> questions = new ArrayList<>();
-        ConnectionProvider provider = ConnectionProvider.getInstance();
-        PreparedStatement preparedStatement;
-        ResultSet resultSet;
-        try (Connection connection = provider.getConnection()) {
-            preparedStatement = connection.prepareStatement(SQLConstants.SELECT_ALL_QUESTIONS_AND_ANSWERS_BY_TEST_ID);
-            preparedStatement.setInt(1, id);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                ShowQuestionDTO showQuestionDTO = new ShowQuestionDTO();
-                String questionText = resultSet.getString("qText");
-                String answerText = resultSet.getString("aText");
-                Boolean isCorrect = resultSet.getBoolean("isCorrect");
-                Integer questionId = resultSet.getInt("question_id");
-                Integer answerQuestionId = resultSet.getInt("answer_question_id");
-                showQuestionDTO.setQuestionText(questionText);
-                showQuestionDTO.setAnswerText(answerText);
-                showQuestionDTO.setCorrect(isCorrect);
-                showQuestionDTO.setQuestionId(questionId);
-                showQuestionDTO.setAnswerQuestionId(answerQuestionId);
-                questions.add(showQuestionDTO);
-            }
-            return questions;
-        } catch (NamingException e) {
-            throw new DBException("Can't obtain SQL connection", e);
-        } catch (SQLException e) {
-            throw new DBException("Can`t obtain all questions", e);
         }
     }
 

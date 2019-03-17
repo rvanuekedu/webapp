@@ -20,16 +20,6 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public void deleteAnswerByName(AnswerDTO answerDTO) {
-        answerDAO.deleteAnswerByName(answerDTO);
-    }
-
-    @Override
-    public List<Answer> getAnswersByQuestionsId(AnswerDTO answerDTO) {
-        return answerDAO.getAnswersByQuestionsId(answerDTO);
-    }
-
-    @Override
     public List<Answer> getAllAnswersByTestId(int id) {
         return answerDAO.getAllAnswersByTestId(id);
     }

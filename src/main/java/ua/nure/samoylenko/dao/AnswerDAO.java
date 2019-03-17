@@ -7,16 +7,12 @@ import java.util.List;
 
 public interface AnswerDAO {
 
-	void createAnswerForQuestionByQuestionId(AnswerDTO answerDTO);
-	
-	void deleteAnswerByName(AnswerDTO answerDTO);
-	
-	List<Answer> getAnswersByQuestionsId(AnswerDTO answerDTO);
+    void createAnswerForQuestionByQuestionId(AnswerDTO answerDTO);
 
-	List<Answer> getAllAnswersByTestId(int id);
+    List<Answer> getAllAnswersByTestId(int id);
 
-	List<String> getTrueAnswersByQuestionId(int id);
+    List<String> getTrueAnswersByQuestionId(int id);
 
-	void deleteAnswerById (int answerId);
+    void deleteAnswerById(int answerId);
 
 }

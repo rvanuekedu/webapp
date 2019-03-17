@@ -2,7 +2,6 @@ package ua.nure.samoylenko.dao.impl;
 
 import ua.nure.samoylenko.dao.TestDAO;
 import ua.nure.samoylenko.db.ConnectionProvider;
-import ua.nure.samoylenko.dto.ResultShowDTO;
 import ua.nure.samoylenko.dto.TestDTO;
 import ua.nure.samoylenko.entities.Test;
 import ua.nure.samoylenko.exception.DBException;
@@ -60,71 +59,6 @@ public class TestDAOImpl implements TestDAO {
     }
 
     @Override
-    public List<Test> getAllTests() {
-//        List<Test> tests = new ArrayList<>();
-//        ConnectionProvider provider = ConnectionProvider.getInstance();
-//        PreparedStatement statement;
-//        ResultSet resultSet;
-//        try (Connection connection = provider.getConnection()) {
-//            statement = connection.prepareStatement(SQLConstants.SELECT_ALL_TEST);
-//            resultSet = statement.executeQuery();
-//            while (resultSet.next()) {
-//                Test currentTest = new Test();
-//                String testName = resultSet.getString("first_name");
-//                String secondName = resultSet.getString("second_name");
-//                String userEmail = resultSet.getString("user_email");
-//                Boolean isBanned = resultSet.getBoolean("is_banned");
-//                Integer id = resultSet.getInt("id");
-////                currentStudent.setId(id);
-////                currentStudent.setFirstName(firstName);
-////                currentStudent.setSecondName(secondName);
-////                currentStudent.setUserEmail(userEmail);
-////                currentStudent.setIsBanned(isBanned);
-////                students.add(currentStudent);
-////            }
-////            return students;
-//        } catch (NamingException e) {
-//            throw new DBException("Can't obtain SQL connection", e);
-//        } catch (SQLException e) {
-//            throw new DBException("Can`t obtain all students", e);
-//        }
-        return null;
-    }
-
-    @Override
-    public List<TestDTO> getAllTestsWithSubjectName() {
-        List<TestDTO> tests = new ArrayList<>();
-        ConnectionProvider provider = ConnectionProvider.getInstance();
-        PreparedStatement statement;
-        ResultSet resultSet;
-        try (Connection connection = provider.getConnection()) {
-            statement = connection.prepareStatement(SQLConstants.SELECT_ALL_TEST_WITH_SUBJECT_NAME);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                TestDTO currentTest = new TestDTO();
-                Integer testId = resultSet.getInt("test_id");
-                String testName = resultSet.getString("test_name");
-                String complexity = resultSet.getString("complexity");
-                Integer time = resultSet.getInt("time");
-                String subjectName = resultSet.getString("subject_name");
-                Integer subjectId = resultSet.getInt("subject_id");
-                currentTest.setId(testId);
-                currentTest.setTestName(testName);
-                currentTest.setComplexityName(complexity);
-                currentTest.setTime(time);
-                currentTest.setSubjectName(subjectName);
-                currentTest.setSubjectId(subjectId);
-                tests.add(currentTest);
-            }
-            return tests;
-        } catch (NamingException e) {
-            throw new DBException("Can't obtain SQL connection", e);
-        } catch (SQLException e) {
-            throw new DBException("Can`t obtain all tests", e);
-        }
-    }
-
-    @Override
     public List<TestDTO> getAllTestsWithSubjectNameAndNumberOfQuestions() {
         List<TestDTO> tests = new ArrayList<>();
         ConnectionProvider provider = ConnectionProvider.getInstance();
@@ -134,22 +68,7 @@ public class TestDAOImpl implements TestDAO {
             statement = connection.prepareStatement(SQLConstants.SELECT_ALL_TESTS_WITH_SUBJECT_NAME_AND_NUMBER_OF_QUESTIONS);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                TestDTO currentTest = new TestDTO();
-                Integer testId = resultSet.getInt("id");
-                String testName = resultSet.getString("test_name");
-                String complexity = resultSet.getString("complexity");
-                Integer time = resultSet.getInt("time");
-                String subjectName = resultSet.getString("subject_name");
-                Integer subjectId = resultSet.getInt("subjects_id");
-                Integer numberOfQuestions = resultSet.getInt("number_of_questions");
-                currentTest.setId(testId);
-                currentTest.setTestName(testName);
-                currentTest.setComplexityName(complexity);
-                currentTest.setTime(time);
-                currentTest.setSubjectName(subjectName);
-                currentTest.setSubjectId(subjectId);
-                currentTest.setNumberOfQuestions(numberOfQuestions);
-                tests.add(currentTest);
+                executeTestByName(tests, resultSet);
             }
             return tests;
         } catch (NamingException e) {
@@ -170,20 +89,7 @@ public class TestDAOImpl implements TestDAO {
             statement.setInt(1, subjectId);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                TestDTO currentTest = new TestDTO();
-                Integer testId = resultSet.getInt("id");
-                String testName = resultSet.getString("test_name");
-                String complexity = resultSet.getString("complexity");
-                Integer time = resultSet.getInt("time");
-                String subjectName = resultSet.getString("subject_name");
-                Integer numberOfQuestions = resultSet.getInt("number_of_questions");
-                currentTest.setId(testId);
-                currentTest.setTestName(testName);
-                currentTest.setComplexityName(complexity);
-                currentTest.setTime(time);
-                currentTest.setSubjectName(subjectName);
-                currentTest.setNumberOfQuestions(numberOfQuestions);
-                tests.add(currentTest);
+                executeAllTestBySubject(tests, resultSet);
             }
             return tests;
         } catch (NamingException e) {
@@ -193,109 +99,21 @@ public class TestDAOImpl implements TestDAO {
         }
     }
 
-    @Override
-    public List<TestDTO> getAllTestSortedByName() {
-        List<TestDTO> tests = new ArrayList<>();
-        ConnectionProvider provider = ConnectionProvider.getInstance();
-        PreparedStatement statement;
-        ResultSet resultSet;
-        try (Connection connection = provider.getConnection()) {
-            statement = connection.prepareStatement(SQLConstants.SELECT_ALL_TESTS_ORDER_BY_TEST_NAME);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                TestDTO currentTest = new TestDTO();
-                Integer testId = resultSet.getInt("id");
-                String testName = resultSet.getString("test_name");
-                String complexity = resultSet.getString("complexity");
-                Integer time = resultSet.getInt("time");
-                String subjectName = resultSet.getString("subject_name");
-                Integer subjectId = resultSet.getInt("subjects_id");
-                Integer numberOfQuestions = resultSet.getInt("number_of_questions");
-                currentTest.setId(testId);
-                currentTest.setTestName(testName);
-                currentTest.setComplexityName(complexity);
-                currentTest.setTime(time);
-                currentTest.setSubjectName(subjectName);
-                currentTest.setSubjectId(subjectId);
-                currentTest.setNumberOfQuestions(numberOfQuestions);
-                tests.add(currentTest);
-            }
-            return tests;
-        } catch (NamingException e) {
-            throw new DBException("Can't obtain SQL connection", e);
-        } catch (SQLException e) {
-            throw new DBException("Can`t obtain all tests", e);
-        }
-    }
-
-    @Override
-    public List<TestDTO> getAllTestSortedBySubject() {
-        List<TestDTO> tests = new ArrayList<>();
-        ConnectionProvider provider = ConnectionProvider.getInstance();
-        PreparedStatement statement;
-        ResultSet resultSet;
-        try (Connection connection = provider.getConnection()) {
-            statement = connection.prepareStatement(SQLConstants.SELECT_ALL_TESTS_ORDER_BY_TEST_SUBJECT);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                TestDTO currentTest = new TestDTO();
-                Integer testId = resultSet.getInt("id");
-                String testName = resultSet.getString("test_name");
-                String complexity = resultSet.getString("complexity");
-                Integer time = resultSet.getInt("time");
-                String subjectName = resultSet.getString("subject_name");
-                Integer subjectId = resultSet.getInt("subjects_id");
-                Integer numberOfQuestions = resultSet.getInt("number_of_questions");
-                currentTest.setId(testId);
-                currentTest.setTestName(testName);
-                currentTest.setComplexityName(complexity);
-                currentTest.setTime(time);
-                currentTest.setSubjectName(subjectName);
-                currentTest.setSubjectId(subjectId);
-                currentTest.setNumberOfQuestions(numberOfQuestions);
-                tests.add(currentTest);
-            }
-            return tests;
-        } catch (NamingException e) {
-            throw new DBException("Can't obtain SQL connection", e);
-        } catch (SQLException e) {
-            throw new DBException("Can`t obtain all tests", e);
-        }
-    }
-
-    @Override
-    public List<TestDTO> getAllTestSortedByNumberOfQuestions() {
-        List<TestDTO> tests = new ArrayList<>();
-        ConnectionProvider provider = ConnectionProvider.getInstance();
-        PreparedStatement statement;
-        ResultSet resultSet;
-        try (Connection connection = provider.getConnection()) {
-            statement = connection.prepareStatement(SQLConstants.SELECT_ALL_TESTS_ORDER_BY_TEST_NUMBER_OF_QUESTIONS);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                TestDTO currentTest = new TestDTO();
-                Integer testId = resultSet.getInt("id");
-                String testName = resultSet.getString("test_name");
-                String complexity = resultSet.getString("complexity");
-                Integer time = resultSet.getInt("time");
-                String subjectName = resultSet.getString("subject_name");
-                Integer subjectId = resultSet.getInt("subjects_id");
-                Integer numberOfQuestions = resultSet.getInt("number_of_questions");
-                currentTest.setId(testId);
-                currentTest.setTestName(testName);
-                currentTest.setComplexityName(complexity);
-                currentTest.setTime(time);
-                currentTest.setSubjectName(subjectName);
-                currentTest.setSubjectId(subjectId);
-                currentTest.setNumberOfQuestions(numberOfQuestions);
-                tests.add(currentTest);
-            }
-            return tests;
-        } catch (NamingException e) {
-            throw new DBException("Can't obtain SQL connection", e);
-        } catch (SQLException e) {
-            throw new DBException("Can`t obtain all tests", e);
-        }
+    private void executeAllTestBySubject(List<TestDTO> tests, ResultSet resultSet) throws SQLException {
+        TestDTO currentTest = new TestDTO();
+        Integer testId = resultSet.getInt("id");
+        String testName = resultSet.getString("test_name");
+        String complexity = resultSet.getString("complexity");
+        Integer time = resultSet.getInt("time");
+        String subjectName = resultSet.getString("subject_name");
+        Integer numberOfQuestions = resultSet.getInt("number_of_questions");
+        currentTest.setId(testId);
+        currentTest.setTestName(testName);
+        currentTest.setComplexityName(complexity);
+        currentTest.setTime(time);
+        currentTest.setSubjectName(subjectName);
+        currentTest.setNumberOfQuestions(numberOfQuestions);
+        tests.add(currentTest);
     }
 
     @Override
@@ -330,22 +148,7 @@ public class TestDAOImpl implements TestDAO {
             statement.setString(1, testName);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                TestDTO currentTest = new TestDTO();
-                Integer testId = resultSet.getInt("id");
-                String name = resultSet.getString("test_name");
-                String complexity = resultSet.getString("complexity");
-                Integer time = resultSet.getInt("time");
-                String subjectName = resultSet.getString("subject_name");
-                Integer subjectId = resultSet.getInt("subjects_id");
-                Integer numberOfQuestions = resultSet.getInt("number_of_questions");
-                currentTest.setId(testId);
-                currentTest.setTestName(name);
-                currentTest.setComplexityName(complexity);
-                currentTest.setTime(time);
-                currentTest.setSubjectName(subjectName);
-                currentTest.setSubjectId(subjectId);
-                currentTest.setNumberOfQuestions(numberOfQuestions);
-                tests.add(currentTest);
+                executeTestByName(tests, resultSet);
             }
             return tests;
         } catch (NamingException e) {
@@ -353,6 +156,25 @@ public class TestDAOImpl implements TestDAO {
         } catch (SQLException e) {
             throw new DBException("Can`t obtain test by name", e);
         }
+    }
+
+    private void executeTestByName(List<TestDTO> tests, ResultSet resultSet) throws SQLException {
+        TestDTO currentTest = new TestDTO();
+        Integer testId = resultSet.getInt("id");
+        String name = resultSet.getString("test_name");
+        String complexity = resultSet.getString("complexity");
+        Integer time = resultSet.getInt("time");
+        String subjectName = resultSet.getString("subject_name");
+        Integer subjectId = resultSet.getInt("subjects_id");
+        Integer numberOfQuestions = resultSet.getInt("number_of_questions");
+        currentTest.setId(testId);
+        currentTest.setTestName(name);
+        currentTest.setComplexityName(complexity);
+        currentTest.setTime(time);
+        currentTest.setSubjectName(subjectName);
+        currentTest.setSubjectId(subjectId);
+        currentTest.setNumberOfQuestions(numberOfQuestions);
+        tests.add(currentTest);
     }
 
     @Override
@@ -421,18 +243,13 @@ public class TestDAOImpl implements TestDAO {
         }
     }
 
-    @Override
-    public ResultShowDTO getTestWithSubjectName(ResultShowDTO resultShowDTO) {
-        return null;
-    }
-
     private Test executeTest(ResultSet resultSet) throws SQLException {
         Test test = new Test();
 
         String testName = resultSet.getString("test_name");
         Integer subjectId = resultSet.getInt("subjects_id");
         String complexity = resultSet.getString("complexity");
-        Integer time = resultSet.getInt("time");
+        int time = resultSet.getInt("time");
 
         test.setTestName(testName);
         test.setSubjectId(subjectId);

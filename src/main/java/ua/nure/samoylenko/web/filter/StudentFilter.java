@@ -2,8 +2,6 @@ package ua.nure.samoylenko.web.filter;
 
 import ua.nure.samoylenko.entities.User;
 import ua.nure.samoylenko.exception.AppException;
-import ua.nure.samoylenko.web.service.ServicesContainer;
-import ua.nure.samoylenko.web.service.StudentService;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

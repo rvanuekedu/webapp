@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 public class SortTest {
 
-    private static Map<String, Integer> complexityMap = new TreeMap<String, Integer>(){{
+    private static Map<String, Integer> complexityMap = new TreeMap<String, Integer>() {{
         put("easy", 1);
         put("medium", 2);
         put("hard", 3);

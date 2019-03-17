@@ -11,7 +11,8 @@ import java.sql.SQLException;
 public class ConnectionProvider {
     private static ConnectionProvider instance = null;
 
-    private ConnectionProvider() { }
+    private ConnectionProvider() {
+    }
 
     public static synchronized ConnectionProvider getInstance() {
         if (instance == null) {

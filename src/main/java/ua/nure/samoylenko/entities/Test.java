@@ -2,60 +2,60 @@ package ua.nure.samoylenko.entities;
 
 public class Test {
 
-	private Integer id;
-	
-	private String testName;
-	
-	private Integer subjectId;
-	
-	private String complexity;
-	
-	private int time;
+    private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
+    private String testName;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private Integer subjectId;
 
-	public String getTestName() {
-		return testName;
-	}
+    private String complexity;
 
-	public void setTestName(String testName) {
-		this.testName = testName;
-	}
+    private int time;
 
-	public Integer getSubjectId() {
-		return subjectId;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setSubjectId(Integer subjectId) {
-		this.subjectId = subjectId;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getComplexity() {
-		return complexity;
-	}
+    public String getTestName() {
+        return testName;
+    }
 
-	public void setComplexity(String complexity) {
-		this.complexity = complexity;
-	}
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
 
-	public int getTime() {
-		return time;
-	}
+    public Integer getSubjectId() {
+        return subjectId;
+    }
 
-	public void setTime(int time) {
-		this.time = time;
-	}
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
+    }
 
-	@Override
-	public String toString() {
-		return "Test [id=" + id + ", testName=" + testName + ", subjectId=" + subjectId + ", complexity=" + complexity
-				+ ", time=" + time + "]";
-	}
-	
+    public String getComplexity() {
+        return complexity;
+    }
+
+    public void setComplexity(String complexity) {
+        this.complexity = complexity;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "Test [id=" + id + ", testName=" + testName + ", subjectId=" + subjectId + ", complexity=" + complexity
+                + ", time=" + time + "]";
+    }
+
 }

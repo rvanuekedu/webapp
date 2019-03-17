@@ -7,10 +7,6 @@ import java.util.List;
 
 public interface StudentService {
 
-    Student getStudentById(int id);
-
-    List<Student> getAllStudents();
-
     void blockStudent(int id);
 
     void unblockStudent(int id);

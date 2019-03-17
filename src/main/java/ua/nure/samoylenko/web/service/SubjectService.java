@@ -7,10 +7,8 @@ import java.util.List;
 
 public interface SubjectService {
 
-	String getSubjectNameById(int id);
+    List<Subject> getAllSubjects();
 
-	List<Subject> getAllSubjects();
-
-	Integer addSubject(SubjectDTO subjectDTO);
+    Integer addSubject(SubjectDTO subjectDTO);
 
 }

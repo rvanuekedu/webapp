@@ -3,7 +3,6 @@ package ua.nure.samoylenko.dao.impl;
 import ua.nure.samoylenko.dao.ResultDAO;
 import ua.nure.samoylenko.db.ConnectionProvider;
 import ua.nure.samoylenko.dto.ResultDTO;
-import ua.nure.samoylenko.dto.ResultShowDTO;
 import ua.nure.samoylenko.exception.DBException;
 import ua.nure.samoylenko.utils.SQLConstants;
 
@@ -65,14 +64,7 @@ public class ResultDAOImpl implements ResultDAO {
             preparedStatement.setInt(1, studentId);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                ResultDTO resultDTO = new ResultDTO();
-                String testName = resultSet.getString("test_name");
-                int resultValue = resultSet.getInt("result");
-                Date date = resultSet.getDate("date");
-                resultDTO.setTestName(testName);
-                resultDTO.setValueOfResult(resultValue);
-                resultDTO.setDate(date);
-                results.add(resultDTO);
+                executeResultsByStudentId(results, resultSet);
             }
             return results;
         } catch (NamingException e) {
@@ -82,38 +74,15 @@ public class ResultDAOImpl implements ResultDAO {
         }
     }
 
-    @Override
-    public ResultShowDTO getResultByStudentIdAndTestId(ResultShowDTO resultShowDTO) {
-        ConnectionProvider provider = ConnectionProvider.getInstance();
-        PreparedStatement pstatement;
-        ResultSet resultSet;
-        try (Connection connection = provider.getConnection()) {
-            pstatement = connection.prepareStatement(SQLConstants.SELECT_RESULT_BY_STUDENT_ID_AND_TEST_ID);
-            int k = 1;
-            pstatement.setInt(k++, resultShowDTO.getStudentId());
-            pstatement.setInt(k, resultShowDTO.getTestId());
-            resultSet = pstatement.executeQuery();
-            if (resultSet.next()) {
-                resultShowDTO = executeResultShowDTO(resultSet);
-            }
-            return resultShowDTO;
-        } catch (NamingException e) {
-            throw new DBException("Can't obtain SQL connection", e);
-        } catch (SQLException e) {
-            throw new DBException("Can`t obtain result", e);
-        }
-    }
-
-    private ResultShowDTO executeResultShowDTO(ResultSet resultSet) throws SQLException {
-        ResultShowDTO resultShowDTO = new ResultShowDTO();
-
-        Integer valueOfResult = resultSet.getInt("result");
+    private void executeResultsByStudentId(List<ResultDTO> results, ResultSet resultSet) throws SQLException {
+        ResultDTO resultDTO = new ResultDTO();
+        String testName = resultSet.getString("test_name");
+        int resultValue = resultSet.getInt("result");
         Date date = resultSet.getDate("date");
-
-        resultShowDTO.setValueOfResult(valueOfResult);
-        resultShowDTO.setDate(date);
-
-        return resultShowDTO;
+        resultDTO.setTestName(testName);
+        resultDTO.setValueOfResult(resultValue);
+        resultDTO.setDate(date);
+        results.add(resultDTO);
     }
 
 }

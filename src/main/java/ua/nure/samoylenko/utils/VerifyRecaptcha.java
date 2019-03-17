@@ -4,12 +4,15 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.net.ssl.HttpsURLConnection;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.URL;
 
 public class VerifyRecaptcha {
-    public static final String url = "https://www.google.com/recaptcha/api/siteverify";
-    public static final String secret = "6LeKI5UUAAAAANffb4ZwewkS3WFbZC_uRO_CqFRI";
+    private static final String url = "https://www.google.com/recaptcha/api/siteverify";
+    private static final String secret = "6LeKI5UUAAAAANffb4ZwewkS3WFbZC_uRO_CqFRI";
     private final static String USER_AGENT = "Mozilla/5.0";
 
     public static boolean verify(String gRecaptchaResponse) {
@@ -38,7 +41,7 @@ public class VerifyRecaptcha {
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     con.getInputStream()));
             String inputLine;
-            StringBuffer response = new StringBuffer();
+            StringBuilder response = new StringBuilder();
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);

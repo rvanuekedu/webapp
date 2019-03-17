@@ -10,18 +10,8 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     private StudentDAO studentDAO;
 
-    public StudentServiceImpl(StudentDAO studentDAO){
+    public StudentServiceImpl(StudentDAO studentDAO) {
         this.studentDAO = studentDAO;
-    }
-
-    @Override
-    public Student getStudentById(int id) {
-        return studentDAO.getStudentById(id);
-    }
-
-    @Override
-    public List<Student> getAllStudents() {
-        return studentDAO.getAllStudents();
     }
 
     @Override
