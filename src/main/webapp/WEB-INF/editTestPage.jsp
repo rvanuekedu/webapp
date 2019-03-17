@@ -8,6 +8,8 @@
     <head>
         <link href="../css/editTestStyle.css" rel="stylesheet">
         <link href="../css/header.css" rel="stylesheet">
+        <script src="../js/validateNumber.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
     <title>Edit Test</title>
@@ -55,7 +57,7 @@
                             <h1>Time for Test</h1>
                             <input type="number" name="testTime" value="${testInfo.time}">
                             <br>
-                            <input class="btn" type="submit" name="submit" value="<fmt:message key="edit" bundle="${BundleContent}"/>">
+                            <input class="btn" type="submit" name="submit" value="<fmt:message key="edit" bundle="${BundleContent}"/>" onclick="return validateNumber()">
                         </div>
                     </form>
                 </div>

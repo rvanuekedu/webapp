@@ -8,6 +8,8 @@
     <head>
         <link href="../css/addTestStyle.css" rel="stylesheet">
         <link href="../css/header.css" rel="stylesheet">
+        <script src="../js/validateNumber.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <title>Add Test</title>
 
@@ -48,9 +50,9 @@
                                         <option value="hard"><fmt:message key="hard" bundle="${BundleContent}"/></option>
                                 </select>
                             <h1><fmt:message key="Time for test" bundle="${BundleContent}"/></h1>
-                            <input type="number" name="testTime"  required>
+                            <input id="number" type="number" name="testTime" required>
                             <br>
-                            <input class="btn" type="submit" name="submit" value="<fmt:message key="add" bundle="${BundleContent}"/>">
+                            <input class="btn" type="submit" name="submit" value="<fmt:message key="add" bundle="${BundleContent}"/>" onclick="return validateNumber()">
                         </div>
                     </form>
                 </div>
