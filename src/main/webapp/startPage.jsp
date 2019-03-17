@@ -5,9 +5,11 @@
 <html>
 	<head>
 		<link href="../css/startPageStyle.css" rel="stylesheet">
+		<link href="../css/change-language.css" rel="stylesheet">
 	</head>
 	
 	<body>
+
 	<c:choose>
             <c:when test="${empty sessionScope.language}">
                 <fmt:setLocale value="en"/>
@@ -17,6 +19,23 @@
             </c:otherwise>
         </c:choose>
         <fmt:setBundle var="BundleContent" basename="Content"/>
+
+<header class="header-user-dropdown">
+
+            	<div class="header-limiter">
+
+                    <div class="header-user-menu" >
+            			    <img src="../images/language.jpg" alt=""/>
+            			<ul>
+            				    <li><a href="ChangeLanguage?language=ru"><fmt:message key="russian" bundle="${BundleContent}"/></a></li>
+            				    <li><a href="ChangeLanguage?language=en"><fmt:message key="english" bundle="${BundleContent}"/></a></li>
+            			</ul>
+            		</div>
+
+
+            	</div>
+
+</header>
 
 		<div class="mainblock">
 			<form action="Enter" name="login" method="POST">

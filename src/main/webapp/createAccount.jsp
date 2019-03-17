@@ -5,6 +5,7 @@
 <html>
     <head>
         <link href="../css/createAccauntPageStyle.css" rel="stylesheet">
+        <link href="../css/change-language.css" rel="stylesheet">
         <script src='https://www.google.com/recaptcha/api.js'></script>
         <script src="../js/validateRegFormScript.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -19,6 +20,23 @@
             </c:otherwise>
         </c:choose>
         <fmt:setBundle var="BundleContent" basename="Content"/>
+
+<header class="header-user-dropdown" style="padding-top: 0px;">
+
+            	<div class="header-limiter">
+
+                    <div class="header-user-menu" >
+            			    <img src="../images/language.jpg" alt="" style="top: 6px;"/>
+            			<ul>
+            				    <li><a href="ChangeLanguage?language=ru"><fmt:message key="russian" bundle="${BundleContent}"/></a></li>
+            				    <li><a href="ChangeLanguage?language=en"><fmt:message key="english" bundle="${BundleContent}"/></a></li>
+            			</ul>
+            		</div>
+
+
+            	</div>
+
+</header>
 
         <div class="container">
             <form action="Registration" name="createAccauntPage" method="POST">
