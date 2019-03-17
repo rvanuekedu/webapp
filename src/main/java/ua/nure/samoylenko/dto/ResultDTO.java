@@ -4,17 +4,17 @@ import java.sql.Date;
 
 public class ResultDTO {
 
-    Integer valueOfResult;
+    private Integer valueOfResult;
 
-    Date date;
+    private Date date;
 
-    String testName;
+    private String testName;
 
-    String dateToDB;
+    private String dateToDB;
 
-    Integer testId;
+    private Integer testId;
 
-    Integer studentId;
+    private Integer studentId;
 
     public Integer getValueOfResult() {
         return valueOfResult;
