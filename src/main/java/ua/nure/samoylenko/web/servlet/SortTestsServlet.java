@@ -1,9 +1,9 @@
 package ua.nure.samoylenko.web.servlet;
 
 import ua.nure.samoylenko.dto.TestDTO;
+import ua.nure.samoylenko.utils.SortTest;
 import ua.nure.samoylenko.web.service.ServicesContainer;
 import ua.nure.samoylenko.web.service.TestService;
-import ua.nure.samoylenko.utils.SortTest;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 @WebServlet("/SortTests")
 public class SortTestsServlet extends HttpServlet {
@@ -35,17 +38,21 @@ public class SortTestsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        List<TestDTO> tests = testService.getAllTestsWithSubjectNameAndNumberOfQuestions();
-        List<Integer> passedTest = (List<Integer>) httpServletRequest.getSession().getAttribute("passedTest");
+        if (httpServletRequest.getParameter("sort") != null && comparatorMap.containsKey(httpServletRequest.getParameter("sort"))) {
+            List<TestDTO> tests = testService.getAllTestsWithSubjectNameAndNumberOfQuestions();
+            List<Integer> passedTest = (List<Integer>) httpServletRequest.getSession().getAttribute("passedTest");
 
-        tests.removeIf(testDTO -> passedTest.contains(testDTO.getId()));
+            tests.removeIf(testDTO -> passedTest.contains(testDTO.getId()));
 
-        if (tests.size() > 1 && httpServletRequest.getParameter("sort") != null) {
-            tests.sort(comparatorMap.get(httpServletRequest.getParameter("sort")));
+            if (tests.size() > 1 && httpServletRequest.getParameter("sort") != null) {
+                tests.sort(comparatorMap.get(httpServletRequest.getParameter("sort")));
+            }
+            httpServletRequest.setAttribute("tests", tests);
+
+            httpServletRequest.getRequestDispatcher("Enter").forward(httpServletRequest, httpServletResponse);
+
+        } else {
+            httpServletResponse.sendRedirect("Enter");
         }
-        httpServletRequest.setAttribute("tests", tests);
-
-        httpServletRequest.getRequestDispatcher("Enter").forward(httpServletRequest, httpServletResponse);
-
     }
 }

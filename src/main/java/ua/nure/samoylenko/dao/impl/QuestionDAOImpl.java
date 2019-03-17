@@ -4,7 +4,6 @@ import ua.nure.samoylenko.dao.QuestionDAO;
 import ua.nure.samoylenko.db.ConnectionProvider;
 import ua.nure.samoylenko.dto.QuestionDTO;
 import ua.nure.samoylenko.dto.ShowQuestionDTO;
-import ua.nure.samoylenko.dto.TestDTO;
 import ua.nure.samoylenko.entities.Question;
 import ua.nure.samoylenko.exception.DBException;
 import ua.nure.samoylenko.utils.SQLConstants;
@@ -17,12 +16,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionDAOImpl implements QuestionDAO{
+public class QuestionDAOImpl implements QuestionDAO {
 
-	@Override
-	public List<Question> getQuestionsByTestId(int id) {
-		List<Question> questions = new ArrayList<>();
-		ConnectionProvider provider = ConnectionProvider.getInstance();
+    @Override
+    public List<Question> getQuestionsByTestId(int id) {
+        List<Question> questions = new ArrayList<>();
+        ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement pstatement;
         ResultSet resultSet;
         try (Connection connection = provider.getConnection()) {
@@ -40,16 +39,16 @@ public class QuestionDAOImpl implements QuestionDAO{
                 questions.add(currentQuestion);
             }
             return questions;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all questions", e);
         }
-	}
+    }
 
-	@Override
-	public void createQuestion(QuestionDTO questionDTO) {
-		ConnectionProvider provider = ConnectionProvider.getInstance();
+    @Override
+    public void createQuestion(QuestionDTO questionDTO) {
+        ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement pstatement;
         try (Connection connection = provider.getConnection()) {
             pstatement = connection.prepareStatement(SQLConstants.INSERT_QUESTION_FOR_TEST);
@@ -57,27 +56,27 @@ public class QuestionDAOImpl implements QuestionDAO{
             pstatement.setString(k++, questionDTO.getqText());
             pstatement.setInt(k, questionDTO.getTestId());
             pstatement.execute();
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t insert question", e);
         }
-	}
+    }
 
-	@Override
-	public void deleteQuestion(int questionId) {
-		ConnectionProvider provider = ConnectionProvider.getInstance();
+    @Override
+    public void deleteQuestion(int questionId) {
+        ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement pStatement;
         try (Connection connection = provider.getConnection()) {
             pStatement = connection.prepareStatement(SQLConstants.DELETE_QUESTION);
             pStatement.setInt(1, questionId);
             pStatement.execute();
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t delete question", e);
         }
-	}
+    }
 
     @Override
     public List<ShowQuestionDTO> getAllQuestionsByTestId(int id) {
@@ -104,7 +103,7 @@ public class QuestionDAOImpl implements QuestionDAO{
                 questions.add(showQuestionDTO);
             }
             return questions;
-        } catch (NamingException e)  {
+        } catch (NamingException e) {
             throw new DBException("Can't obtain SQL connection", e);
         } catch (SQLException e) {
             throw new DBException("Can`t obtain all questions", e);

@@ -160,14 +160,14 @@ public class TestDAOImpl implements TestDAO {
     }
 
     @Override
-    public List<TestDTO> getAllTestBySubject(String subject) {
+    public List<TestDTO> getAllTestBySubject(int subjectId) {
         List<TestDTO> tests = new ArrayList<>();
         ConnectionProvider provider = ConnectionProvider.getInstance();
         PreparedStatement statement;
         ResultSet resultSet;
         try (Connection connection = provider.getConnection()) {
             statement = connection.prepareStatement(SQLConstants.SELECT_ALL_TESTS_BY_SUBJECT);
-            statement.setString(1, subject);
+            statement.setInt(1, subjectId);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 TestDTO currentTest = new TestDTO();
@@ -176,14 +176,12 @@ public class TestDAOImpl implements TestDAO {
                 String complexity = resultSet.getString("complexity");
                 Integer time = resultSet.getInt("time");
                 String subjectName = resultSet.getString("subject_name");
-                Integer subjectId = resultSet.getInt("subjects_id");
                 Integer numberOfQuestions = resultSet.getInt("number_of_questions");
                 currentTest.setId(testId);
                 currentTest.setTestName(testName);
                 currentTest.setComplexityName(complexity);
                 currentTest.setTime(time);
                 currentTest.setSubjectName(subjectName);
-                currentTest.setSubjectId(subjectId);
                 currentTest.setNumberOfQuestions(numberOfQuestions);
                 tests.add(currentTest);
             }

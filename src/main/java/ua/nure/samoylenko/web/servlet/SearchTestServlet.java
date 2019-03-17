@@ -49,4 +49,8 @@ public class SearchTestServlet extends HttpServlet {
         httpServletRequest.getRequestDispatcher("/WEB-INF/mainPage.jsp").forward(httpServletRequest, httpServletResponse);
     }
 
+    @Override
+    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        httpServletResponse.sendRedirect("Enter");
+    }
 }

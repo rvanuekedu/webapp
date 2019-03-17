@@ -50,7 +50,6 @@ public class AddTestServlet extends HttpServlet {
 
         testTime = Integer.parseInt(httpServletRequest.getParameter("testTime"));
 
-
         testDTO.setTestName(testName);
         testDTO.setSubjectId(subjectId);
         testDTO.setComplexityName(complexity);

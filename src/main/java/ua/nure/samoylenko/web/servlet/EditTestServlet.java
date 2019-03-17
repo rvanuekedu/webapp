@@ -24,22 +24,26 @@ public class EditTestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         httpServletRequest.setCharacterEncoding("utf-8");
-        Integer testId = Integer.parseInt(httpServletRequest.getParameter("testId"));
-        Test test = testService.getTest(testId);
+        if (httpServletRequest.getParameter("testId") != null && !httpServletRequest.getParameter("testId").equals("")) {
+            Integer testId = Integer.parseInt(httpServletRequest.getParameter("testId"));
+            Test test = testService.getTest(testId);
 
-        if (!test.getTestName().equals(httpServletRequest.getParameter("testName")) && !"".equals(httpServletRequest.getParameter("testName"))) {
-            testService.changeTestName(httpServletRequest.getParameter("testName").trim(), testId);
+            if (!test.getTestName().equals(httpServletRequest.getParameter("testName")) && !"".equals(httpServletRequest.getParameter("testName"))) {
+                testService.changeTestName(httpServletRequest.getParameter("testName").trim(), testId);
+            }
+
+            if (!test.getComplexity().equals(httpServletRequest.getParameter("complexity"))) {
+                testService.changeTestComplexity(httpServletRequest.getParameter("complexity").trim(), testId);
+            }
+
+            if (!"".equals(httpServletRequest.getParameter("testTime")) && test.getTime() != Integer.parseInt(httpServletRequest.getParameter("testTime"))) {
+                testService.changeTestTime(Integer.parseInt(httpServletRequest.getParameter("testTime")), testId);
+            }
+
+            httpServletResponse.sendRedirect("Enter");
+        } else {
+            httpServletResponse.sendRedirect("Enter");
         }
-
-        if (!test.getComplexity().equals(httpServletRequest.getParameter("complexity"))) {
-            testService.changeTestComplexity(httpServletRequest.getParameter("complexity").trim(), testId);
-        }
-
-        if (!"".equals(httpServletRequest.getParameter("testTime")) && test.getTime() != Integer.parseInt(httpServletRequest.getParameter("testTime"))) {
-            testService.changeTestTime(Integer.parseInt(httpServletRequest.getParameter("testTime")), testId);
-        }
-
-        httpServletResponse.sendRedirect("Enter");
     }
 
     @Override

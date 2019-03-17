@@ -23,16 +23,18 @@ public class AddQuestionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         httpServletRequest.setCharacterEncoding("utf-8");
-        Integer testId = Integer.parseInt(httpServletRequest.getParameter("testId"));
+        if (httpServletRequest.getParameter("testId") != null) {
+            Integer testId = Integer.parseInt(httpServletRequest.getParameter("testId"));
 
-        if (!"".equals(httpServletRequest.getParameter("newQuestion"))) {
-            QuestionDTO questionDTO = new QuestionDTO();
-            String questionText = httpServletRequest.getParameter("newQuestion");
-            questionDTO.setqText(questionText);
-            questionDTO.setTestId(testId);
-            questionService.createQuestion(questionDTO);
+            if (!"".equals(httpServletRequest.getParameter("newQuestion"))) {
+                QuestionDTO questionDTO = new QuestionDTO();
+                String questionText = httpServletRequest.getParameter("newQuestion");
+                questionDTO.setqText(questionText);
+                questionDTO.setTestId(testId);
+                questionService.createQuestion(questionDTO);
+            }
+
+            httpServletResponse.sendRedirect("EnterToTest?testId=" + testId);
         }
-
-        httpServletResponse.sendRedirect("EnterToTest?testId=" + testId);
     }
 }

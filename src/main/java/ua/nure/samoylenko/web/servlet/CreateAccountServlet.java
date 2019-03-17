@@ -1,13 +1,13 @@
 package ua.nure.samoylenko.web.servlet;
 
 import ua.nure.samoylenko.dto.RegisterDTO;
-import ua.nure.samoylenko.web.email.ssl.SenderSSl;
 import ua.nure.samoylenko.exception.AppException;
+import ua.nure.samoylenko.utils.Validator;
+import ua.nure.samoylenko.utils.VerifyRecaptcha;
+import ua.nure.samoylenko.web.email.ssl.SenderSSl;
 import ua.nure.samoylenko.web.service.ServicesContainer;
 import ua.nure.samoylenko.web.service.StudentService;
 import ua.nure.samoylenko.web.service.UserService;
-import ua.nure.samoylenko.utils.Validator;
-import ua.nure.samoylenko.utils.VerifyRecaptcha;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

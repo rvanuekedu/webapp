@@ -22,21 +22,28 @@ public class AddAnswerServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         httpServletRequest.setCharacterEncoding("utf-8");
-        Integer questionId = Integer.parseInt(httpServletRequest.getParameter("questionId"));
-        Integer testId = Integer.parseInt(httpServletRequest.getParameter("testId"));
+        if (httpServletRequest.getParameter("questionId") != null && httpServletRequest.getParameter("testId") != null) {
+            Integer questionId = Integer.parseInt(httpServletRequest.getParameter("questionId"));
+            Integer testId = Integer.parseInt(httpServletRequest.getParameter("testId"));
 
-        if(!"".equals(httpServletRequest.getParameter("newAnswer"))) {
-            AnswerDTO answerDTO = new AnswerDTO();
-            String answerText = httpServletRequest.getParameter("newAnswer");
-            boolean isCorrect = Boolean.parseBoolean(httpServletRequest.getParameter("isCorrect"));
-            answerDTO.setaText(answerText);
-            answerDTO.setCorrect(isCorrect);
-            answerDTO.setQuestionId(questionId);
-            answerService.createAnswerForQuestionByQuestionId(answerDTO);
+            if (!"".equals(httpServletRequest.getParameter("newAnswer"))) {
+                AnswerDTO answerDTO = new AnswerDTO();
+                String answerText = httpServletRequest.getParameter("newAnswer");
+                boolean isCorrect = Boolean.parseBoolean(httpServletRequest.getParameter("isCorrect"));
+                answerDTO.setaText(answerText);
+                answerDTO.setCorrect(isCorrect);
+                answerDTO.setQuestionId(questionId);
+                answerService.createAnswerForQuestionByQuestionId(answerDTO);
+            }
+
+            httpServletResponse.sendRedirect("EnterToTest?testId=" + testId);
         }
+    }
 
-        httpServletResponse.sendRedirect("EnterToTest?testId=" + testId);
+    @Override
+    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        httpServletResponse.sendRedirect("Enter");
     }
 }

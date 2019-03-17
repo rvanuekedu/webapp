@@ -31,29 +31,31 @@ public class EnterToTestServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        if ((httpServletRequest.getParameter("testId") != null) && !httpServletRequest.getParameter("testId").equals("")) {
+            List<Integer> passedTest = (List<Integer>) httpServletRequest.getSession().getAttribute("passedTest");
+            Integer testId = Integer.parseInt(httpServletRequest.getParameter("testId"));
+            if (passedTest.contains(testId)) {
+                httpServletResponse.sendRedirect("Enter");
+            } else {
+                List<Question> questions;
+                List<Answer> answers;
+                Integer testTime;
 
-        List<Integer> passedTest = (List<Integer>) httpServletRequest.getSession().getAttribute("passedTest");
-        Integer testId = Integer.parseInt(httpServletRequest.getParameter("testId"));
-        if (passedTest.contains(testId)) {
-            httpServletResponse.sendRedirect("Enter");
+                questions = questionService.getQuestionsByTestId(testId);
+
+                answers = answerService.getAllAnswersByTestId(testId);
+
+                testTime = testService.getTestTimeByTestId(testId);
+
+                httpServletRequest.setAttribute("questions", questions);
+                httpServletRequest.setAttribute("answers", answers);
+                httpServletRequest.setAttribute("testTime", testTime);
+                httpServletRequest.setAttribute("testId", testId);
+
+                httpServletRequest.getRequestDispatcher("/WEB-INF/TestPage.jsp").forward(httpServletRequest, httpServletResponse);
+            }
         } else {
-            List<Question> questions;
-            List<Answer> answers;
-            Integer testTime;
-
-            questions = questionService.getQuestionsByTestId(testId);
-
-            answers = answerService.getAllAnswersByTestId(testId);
-
-            testTime = testService.getTestTimeByTestId(testId);
-
-            httpServletRequest.setAttribute("questions", questions);
-            httpServletRequest.setAttribute("answers", answers);
-            httpServletRequest.setAttribute("testTime", testTime);
-            httpServletRequest.setAttribute("testId", testId);
-
-            httpServletRequest.getRequestDispatcher("/WEB-INF/TestPage.jsp").forward(httpServletRequest, httpServletResponse);
-
+            httpServletResponse.sendRedirect("Enter");
         }
     }
 

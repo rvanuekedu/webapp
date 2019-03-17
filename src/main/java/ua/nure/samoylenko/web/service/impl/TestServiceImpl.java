@@ -41,8 +41,8 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public List<TestDTO> getAllTestBySubject(String subject) {
-        return testDAO.getAllTestBySubject(subject);
+    public List<TestDTO> getAllTestBySubject(int subjectId) {
+        return testDAO.getAllTestBySubject(subjectId);
     }
 
     @Override

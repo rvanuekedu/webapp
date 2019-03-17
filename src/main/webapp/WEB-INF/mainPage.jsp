@@ -78,7 +78,7 @@
                         <br>
                         <select name="subject">
                             <c:forEach items="${subjects}" var="subject">
-                                <option value="${subject.name}"> ${subject.name}</option>
+                                <option value="${subject.id}"> ${subject.name}</option>
                             </c:forEach>
                         </select>
                         <br>
@@ -133,16 +133,16 @@
                     <c:choose>
                         <c:when test="${not empty tests}">
                             <c:forEach items="${tests}" var="test">
-                                <div class="card" style="height: 340px;">
+                                <div class="card">
                                     <c:choose>
                                         <c:when test="${test.complexityName == 'easy'}">
-                                            <div class="complexity" style="background-color:green; height: 10%;"></div>
+                                            <div class="complexity" style="background-color:green; height: 8%;"></div>
                                         </c:when>
                                         <c:when test="${test.complexityName == 'medium'}">
-                                             <div class="complexity" style="background-color:orange; height: 10%;"></div>
+                                             <div class="complexity" style="background-color:orange; height: 8%;"></div>
                                         </c:when>
                                         <c:when test="${test.complexityName == 'hard'}">
-                                            <div class="complexity" style="background-color:red; height: 10%;"></div>
+                                            <div class="complexity" style="background-color:red; height: 8%;"></div>
                                         </c:when>
                                      </c:choose>
                                     <div class="test-name"><strong>${test.testName}</strong></div>
@@ -169,20 +169,20 @@
                             <div class="card">
                                 <c:choose>
                                     <c:when test="${test.complexityName == 'easy'}">
-                                        <div class="complexity" style="background-color:green; height: 10%; margin-bottom: 3%;"></div>
+                                        <div class="complexity" style="background-color:green; height: 8%; margin-bottom: 3%; margin-bottom: 1%;"></div>
                                     </c:when>
                                     <c:when test="${test.complexityName == 'medium'}">
-                                        <div class="complexity" style="background-color:orange; height: 10%; margin-bottom: 3%;"></div>
+                                        <div class="complexity" style="background-color:orange; height: 8%; margin-bottom: 3%; margin-bottom: 1%;"></div>
                                     </c:when>
                                     <c:when test="${test.complexityName == 'hard'}">
-                                        <div class="complexity" style="background-color:red; height: 10%; margin-bottom: 3%;"></div>
+                                        <div class="complexity" style="background-color:red; height: 8%; margin-bottom: 3%; margin-bottom: 1%;"></div>
                                     </c:when>
                                 </c:choose>
                                 <div class="delete-edit">
                                     <a class="edit" href="EditTest?testId=${test.id}" title="Edit" ><img src="../images/edit.png" alt=""></a>
                                     <a class="delete" href="DeleteTest?testId=${test.id}" title="Delete" ><img src="../images/delete.png" alt=""></a>
                                 </div>
-                                <div class="test-name"><strong>${test.testName}</strong></div>
+                                <div class="test-name" style="height: 11%;"><strong>${test.testName}</strong></div>
                                 <div class="test-subject asd"><fmt:message key="subject" bundle="${BundleContent}"/> <strong>${test.subjectName}</strong></div>
                                 <div class="number-of-questions asd"><fmt:message key="number of questions" bundle="${BundleContent}"/> <strong>${test.numberOfQuestions}</strong></div>
                                 <div class="complexity asd"><fmt:message key="complexity" bundle="${BundleContent}"/> <strong>${test.complexityName}</strong></div>

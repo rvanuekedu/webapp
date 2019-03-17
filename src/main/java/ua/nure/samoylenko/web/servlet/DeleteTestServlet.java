@@ -22,9 +22,8 @@ public class DeleteTestServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        if (httpServletRequest.getParameter("testId") != null) {
+        if (httpServletRequest.getParameter("testId") != null && !httpServletRequest.getParameter("testId").equals("")) {
             Integer testId = Integer.parseInt(httpServletRequest.getParameter("testId"));
-
             testService.deleteTestById(testId);
         }
         httpServletResponse.sendRedirect("Enter");

@@ -18,7 +18,7 @@ public interface TestService {
 
     List<TestDTO> getAllTestsWithSubjectNameAndNumberOfQuestions();
 
-    List<TestDTO> getAllTestBySubject(String subject);
+    List<TestDTO> getAllTestBySubject(int subjectId);
 
     List<TestDTO> getAllTestSortedByName();
 

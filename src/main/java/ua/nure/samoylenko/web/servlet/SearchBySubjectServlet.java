@@ -24,16 +24,20 @@ public class SearchBySubjectServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        httpServletRequest.setCharacterEncoding("utf-8");
-        String subject = httpServletRequest.getParameter("subject");
-        List<TestDTO> tests = testService.getAllTestBySubject(subject);
 
-        List<Integer> passedTest = (List<Integer>) httpServletRequest.getSession().getAttribute("passedTest");
+        if (httpServletRequest.getParameter("subject") != null && !httpServletRequest.getParameter("subject").equals("")) {
+            int subjectId = Integer.parseInt(httpServletRequest.getParameter("subject"));
+            List<TestDTO> tests = testService.getAllTestBySubject(subjectId);
 
-        tests.removeIf(testDTO -> passedTest.contains(testDTO.getId()));
+            List<Integer> passedTest = (List<Integer>) httpServletRequest.getSession().getAttribute("passedTest");
 
-        httpServletRequest.setAttribute("tests", tests);
+            tests.removeIf(testDTO -> passedTest.contains(testDTO.getId()));
 
-        httpServletRequest.getRequestDispatcher("Enter").forward(httpServletRequest, httpServletResponse);
+            httpServletRequest.setAttribute("tests", tests);
+
+            httpServletRequest.getRequestDispatcher("Enter").forward(httpServletRequest, httpServletResponse);
+        } else {
+            httpServletResponse.sendRedirect("Enter");
+        }
     }
 }
