@@ -55,7 +55,7 @@
                                     </c:choose>
                                 </select>
                             <h1>Time for Test</h1>
-                            <input type="number" name="testTime" value="${testInfo.time}">
+                            <input id="number" type="number" name="testTime" value="${testInfo.time}">
                             <br>
                             <input class="btn" type="submit" name="submit" value="<fmt:message key="edit" bundle="${BundleContent}"/>" onclick="return validateNumber()">
                         </div>
