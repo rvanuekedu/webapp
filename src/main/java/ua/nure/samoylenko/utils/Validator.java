@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static ua.nure.samoylenko.utils.RegExpConstants.EMAIL_VALIDATE;
+import static ua.nure.samoylenko.utils.RegExpConstants.PASSWORD_VALIDATE;
+
 public class Validator {
 
     public boolean validatePasswordsFormsEquals(HttpServletRequest request) {
@@ -16,47 +19,22 @@ public class Validator {
     }
 
     public boolean validateNamesFromRegForm(RegisterDTO registerDTO) {
-        return !StringUtils.isBlank(registerDTO.getSecondName()) && !StringUtils.isBlank(registerDTO.getFirstName());
+        return StringUtils.isBlank(registerDTO.getSecondName()) && StringUtils.isBlank(registerDTO.getFirstName());
     }
 
     public boolean validateEmailAndPasswordFromRegForm(RegisterDTO registerDTO) {
-        boolean emailFlag = false;
-        boolean passwordFlag = false;
-        Pattern pattern = Pattern.compile(RegExpConstants.EMAIL_VALIDATE);
-        Matcher matcher = pattern.matcher(registerDTO.getEmail());
-
-        if (matcher.find()) {
-            emailFlag = true;
-        }
-        pattern = Pattern.compile(RegExpConstants.PASSWORD_VALIDATE);
-        matcher = pattern.matcher(registerDTO.getPassword());
-
-        if (matcher.find()) {
-            passwordFlag = true;
-        }
-        return emailFlag && passwordFlag;
+        return validateEmail(registerDTO.getEmail()) && validatePassword(registerDTO.getPassword());
     }
 
     public boolean validateEmail(String email) {
-        boolean emailFlag = false;
-
-        Pattern pattern = Pattern.compile(RegExpConstants.EMAIL_VALIDATE);
+        Pattern pattern = Pattern.compile(EMAIL_VALIDATE);
         Matcher matcher = pattern.matcher(email);
-
-        if (matcher.find()) {
-            emailFlag = true;
-        }
-        return emailFlag;
+        return matcher.find();
     }
 
     public boolean validatePassword(String password) {
-        boolean passwordFlag = false;
-        Pattern pattern = Pattern.compile(RegExpConstants.PASSWORD_VALIDATE);
+        Pattern pattern = Pattern.compile(PASSWORD_VALIDATE);
         Matcher matcher = pattern.matcher(password);
-
-        if (matcher.find()) {
-            passwordFlag = true;
-        }
-        return passwordFlag;
+        return matcher.find();
     }
 }

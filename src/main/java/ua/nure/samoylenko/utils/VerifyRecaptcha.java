@@ -1,5 +1,7 @@
 package ua.nure.samoylenko.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
@@ -16,7 +18,7 @@ public class VerifyRecaptcha {
     private final static String USER_AGENT = "Mozilla/5.0";
 
     public static boolean verify(String gRecaptchaResponse) {
-        if (gRecaptchaResponse == null || "".equals(gRecaptchaResponse)) {
+        if (gRecaptchaResponse == null || StringUtils.EMPTY.equals(gRecaptchaResponse)) {
             return false;
         }
         try {

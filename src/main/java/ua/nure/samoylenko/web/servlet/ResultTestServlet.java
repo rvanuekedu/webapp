@@ -1,5 +1,6 @@
 package ua.nure.samoylenko.web.servlet;
 
+import org.apache.log4j.Logger;
 import ua.nure.samoylenko.dto.ResultDTO;
 import ua.nure.samoylenko.entities.Question;
 import ua.nure.samoylenko.entities.User;
@@ -22,10 +23,12 @@ public class ResultTestServlet extends HttpServlet {
     private AnswerService answerService;
     private ResultService resultService;
     private StudentService studentService;
+    private static Logger LOGGER = Logger.getLogger(ResultTestServlet.class);
 
 
     @Override
     public void init() {
+        LOGGER.debug("Init servlet ResultTest start");
         ServicesContainer servicesContainer = (ServicesContainer) getServletContext().getAttribute("servicesContainer");
         questionService = servicesContainer.getQuestionService();
         answerService = servicesContainer.getAnswerService();
@@ -35,29 +38,29 @@ public class ResultTestServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
+        LOGGER.debug("Do post in servlet ResultTest start");
         httpServletRequest.setCharacterEncoding("utf-8");
-
         List<Integer> passedTest = (List<Integer>) httpServletRequest.getSession().getAttribute("passedTest");
         Integer testId = Integer.parseInt(httpServletRequest.getParameter("testId"));
-        if(!passedTest.contains(testId)) {
 
+        if (!passedTest.contains(testId)) {
             List<Question> questions;
             List<String> answers;
             String[] checkbox;
             int result;
             float numberOfTrueAnswers = 0;
 
-
-//        Get current date
+            LOGGER.debug("Get current date");
             Date dt = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String date = sdf.format(dt);
 
-
+            LOGGER.debug("Obtain questions by services");
             questions = questionService.getQuestionsByTestId(testId);
 
-//        Count of true answers
+            LOGGER.debug("Process the result for test");
             for (Question question : questions) {
+                LOGGER.debug("Obtain answers by services");
                 answers = answerService.getTrueAnswersByQuestionId(question.getQuestionId());
                 checkbox = httpServletRequest.getParameterValues(String.valueOf(question.getQuestionId()));
                 if (checkbox != null) {
@@ -71,10 +74,8 @@ public class ResultTestServlet extends HttpServlet {
             }
 
             result = Math.round(numberOfTrueAnswers / questions.size() * 100);
-
-//        Result to BD
             User user = (User) httpServletRequest.getSession().getAttribute("user");
-
+            LOGGER.debug("Obtain studentId by services");
             Integer studentId = studentService.getStudentIdByEmail(user.getEmail());
             ResultDTO resultDTO = new ResultDTO();
 
@@ -82,18 +83,20 @@ public class ResultTestServlet extends HttpServlet {
             resultDTO.setDateToDB(date);
             resultDTO.setTestId(testId);
             resultDTO.setValueOfResult(result);
-
+            LOGGER.debug("Push the result to data base");
             resultService.createResult(resultDTO);
             passedTest.add(testId);
-
+            LOGGER.debug("Trying to send redirect in ShowResult");
             httpServletResponse.sendRedirect("ShowResult");
         } else {
+            LOGGER.debug("Trying to send redirect in Enter");
             httpServletResponse.sendRedirect("Enter");
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        LOGGER.debug("Do get in  servlet ResultTest start");
         httpServletResponse.sendRedirect("Enter");
     }
 }

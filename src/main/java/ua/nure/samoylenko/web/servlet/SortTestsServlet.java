@@ -1,5 +1,6 @@
 package ua.nure.samoylenko.web.servlet;
 
+import org.apache.log4j.Logger;
 import ua.nure.samoylenko.dto.TestDTO;
 import ua.nure.samoylenko.utils.SortTest;
 import ua.nure.samoylenko.web.service.ServicesContainer;
@@ -20,9 +21,11 @@ import java.util.TreeMap;
 public class SortTestsServlet extends HttpServlet {
     private TestService testService;
     private static Map<String, Comparator> comparatorMap = new TreeMap<>();
+    private static Logger LOGGER = Logger.getLogger(SortTestsServlet.class);
 
     @Override
     public void init() {
+        LOGGER.debug("Init servlet SortTests start");
         ServicesContainer servicesContainer = (ServicesContainer) getServletContext().getAttribute("servicesContainer");
         testService = servicesContainer.getTestService();
 
@@ -38,20 +41,23 @@ public class SortTestsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        LOGGER.debug("Do get in servlet SortTest start");
+        LOGGER.debug("Check parameter sort is valid");
         if (httpServletRequest.getParameter("sort") != null && comparatorMap.containsKey(httpServletRequest.getParameter("sort"))) {
             List<TestDTO> tests = testService.getAllTestsWithSubjectNameAndNumberOfQuestions();
             List<Integer> passedTest = (List<Integer>) httpServletRequest.getSession().getAttribute("passedTest");
-
             tests.removeIf(testDTO -> passedTest.contains(testDTO.getId()));
 
             if (tests.size() > 1 && httpServletRequest.getParameter("sort") != null) {
                 tests.sort(comparatorMap.get(httpServletRequest.getParameter("sort")));
             }
             httpServletRequest.setAttribute("tests", tests);
-
+            LOGGER.debug("Trying to forward to Enter");
             httpServletRequest.getRequestDispatcher("Enter").forward(httpServletRequest, httpServletResponse);
 
         } else {
+            LOGGER.debug("Parameter sort is not valid");
+            LOGGER.debug("Trying to send redirect in Enter");
             httpServletResponse.sendRedirect("Enter");
         }
     }
