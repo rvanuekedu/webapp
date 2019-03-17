@@ -43,13 +43,13 @@
 					<img src="../images/logo.svg" alt="">
 				</div>
 				<div class="inputCenter">
-					<input type="text" name="email" placeholder="<fmt:message key="login" bundle="${BundleContent}"/>" required autofocus>
+					<input type="text" name="email" placeholder="<fmt:message key="login input" bundle="${BundleContent}"/>" required autofocus>
 					<input type="password" name="password" placeholder="<fmt:message key="password" bundle="${BundleContent}"/>" required>
 					<input class="btn" type="submit" name="submit" value="<fmt:message key="login" bundle="${BundleContent}"/>">
 				</div>
 			</form>
 			<div class="createAcc">
-					Not registered? <a href="createAccount.jsp"><fmt:message key="create an account" bundle="${BundleContent}"/></a>
+					<span style="color: black;"><fmt:message key="not registered" bundle="${BundleContent}"/></span> <a href="createAccount.jsp"><fmt:message key="create an account" bundle="${BundleContent}"/></a>
 			</div>
 		</div>
 	</body>
